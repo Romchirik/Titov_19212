@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -std=gnu++14 -o CMakeFiles/Prisoner_dilemma_simulator.dir/main.cpp.o -c /home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/main.cpp",
+  "file": "/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/main.cpp"
+},
+{
+  "directory": "/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -std=gnu++14 -o CMakeFiles/Prisoner_dilemma_simulator.dir/Factory/Factory.cpp.o -c /home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/Factory/Factory.cpp",
+  "file": "/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/Factory/Factory.cpp"
+},
+{
+  "directory": "/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -std=gnu++14 -o CMakeFiles/Prisoner_dilemma_simulator.dir/Simulator/Simulator.cpp.o -c /home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/Simulator/Simulator.cpp",
+  "file": "/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/Simulator/Simulator.cpp"
+},
+{
+  "directory": "/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -std=gnu++14 -o CMakeFiles/Prisoner_dilemma_simulator.dir/InputHandler/InputHandler.cpp.o -c /home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/InputHandler/InputHandler.cpp",
+  "file": "/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/InputHandler/InputHandler.cpp"
+},
+{
+  "directory": "/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -std=gnu++14 -o CMakeFiles/Prisoner_dilemma_simulator.dir/Printer/Printer.cpp.o -c /home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/Printer/Printer.cpp",
+  "file": "/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/Printer/Printer.cpp"
+}
+]
