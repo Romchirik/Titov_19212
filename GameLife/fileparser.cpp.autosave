@@ -1,0 +1,5 @@
+#include "filehandler.h"
+
+FieldModel &FileHandler::getParsedModel(){
+    return model;
+}

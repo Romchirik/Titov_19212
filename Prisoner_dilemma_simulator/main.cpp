@@ -89,5 +89,8 @@ int main(int argc, char *argv[]) {
     game.setNumSteps(handler.num_steps);
     game.startGame();
 
+    for (void *&i : libs) {
+        dlclose(i);
+    }
     return 0;
 }

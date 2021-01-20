@@ -340,6 +340,16 @@ unordered_map
 ../StrategiesStuff/include/Strategy.h
 /home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/StrategiesStuff/include/Strategy.h
 
+/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/InputHandler/InputHandler.h
+string
+-
+unordered_map
+-
+vector
+-
+../macro.h
+/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/macro.h
+
 /home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/Printer/Printer.h
 iomanip
 -
@@ -380,15 +390,23 @@ vector
 
 /home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/macro.h
 
-/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/tests.cpp
+/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/main.cpp
+dlfcn.h
+-
 gtest/gtest.h
 -
-algorithm
+iostream
 -
+memory
+-
+string
+-
+Factory/Factory.h
+/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/Factory/Factory.h
+InputHandler/InputHandler.h
+/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/InputHandler/InputHandler.h
 Simulator/Simulator.h
 /home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/Simulator/Simulator.h
-StrategiesStuff/include/Strategy.h
-/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/StrategiesStuff/include/Strategy.h
 macro.h
 /home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/macro.h
 
