@@ -2,12 +2,12 @@
 
 #include <memory>
 
-#include "Strategy.h"
-#include "../../macro.h"
 #include "../../Factory/Factory.h"
+#include "../../macro.h"
+#include "Strategy.h"
 
-class AllDefect final: public Strategy {
-public:
+class AllDefect final : public Strategy {
+   public:
     AllDefect() = default;
 
     ~AllDefect() override = default;
@@ -15,4 +15,6 @@ public:
     bool makeDecision(const std::vector<bool> &prev_d1);
 
     bool makeDecision(const std::vector<bool> &prev_d1, const std::vector<bool> &prev_d2);
+
+    void reset() override;
 };

@@ -1,0 +1,28 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Prisoner_dilemma_simulator",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "main.cpp",
+                "Factory/Factory.cpp",
+                "InputHandler/InputHandler.cpp",
+                "Printer/Printer.cpp",
+                "Simulator/Simulator.cpp",
+                "-ldl", 
+                "-o", 
+                "Prisoner_dilemma_simulator"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}

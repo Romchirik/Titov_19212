@@ -2,13 +2,11 @@
 
 #include <memory>
 
-#include "Strategy.h"
 #include "../../macro.h"
+#include "Strategy.h"
 
-class AllCooperate : public Strategy
-{
-
-public:
+class AllCooperate : public Strategy {
+   public:
     AllCooperate() = default;
 
     ~AllCooperate() = default;
@@ -18,4 +16,6 @@ public:
     bool makeDecision(const std::vector<bool> &prev_d1, const std::vector<bool> &prev_d2) override;
 
     static std::shared_ptr<Strategy> createAllCooperate();
+
+    void reset() override;
 };

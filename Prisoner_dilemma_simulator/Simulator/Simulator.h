@@ -1,5 +1,8 @@
 #pragma once
 
+#include <gtest/gtest.h>
+
+#include <algorithm>
 #include <bitset>
 #include <iostream>
 #include <string>
@@ -58,4 +61,9 @@ class Simulator {
     std::unordered_map<std::string, std::vector<int>> game_matrix;
     std::vector<std::string> winners;
     std::vector<std::vector<int>> tournament_table;
+
+   private:
+    FRIEND_TEST(Simulator_test, subsets_test);
+    FRIEND_TEST(Simulator_test, default_secision_matrix_test);
+    FRIEND_TEST(Simulator, history_push_test);
 };

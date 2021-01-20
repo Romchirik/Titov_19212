@@ -1,8 +1,8 @@
-#include <random>
 #include "../include/Random.h"
 
-extern "C"
-std::unique_ptr<Strategy> create(){
+#include <random>
+
+extern "C" std::unique_ptr<Strategy> create() {
     return std::make_unique<Random>();
 }
 
@@ -17,4 +17,8 @@ Random::Random() {
 
 bool Random::makeDecision(const std::vector<bool> &prev_d1) {
     return random_bool(engine);
+}
+
+void Random::reset() {
+    return;
 }

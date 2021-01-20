@@ -2,16 +2,31 @@
 
 void Simulator::startCompetition(const std::vector<int> &now_challenging) {
     Round tmp_hist;
-    tmp_hist.names[0] = strategies_names[now_challenging[0]];
-    tmp_hist.names[0] = strategies_names[now_challenging[1]];
-    tmp_hist.names[0] = strategies_names[now_challenging[2]];
+    tmp_hist.challenged = now_challenging;
+    tmp_hist.names.push_back(strategies_names[now_challenging[0]]);
+    tmp_hist.names.push_back(strategies_names[now_challenging[1]]);
+    tmp_hist.names.push_back(strategies_names[now_challenging[2]]);
     for (int i = 0; i < num_steps; i++) {
         nextStep(now_challenging, tmp_hist);
     }
+    printer.printResultComp(tmp_hist, -1);
+    std::vector<std::string> tmp;
+    auto max_score = std::max_element(tmp_hist.score.begin(), tmp_hist.score.end());
+    for (int i = 0; i < tmp_hist.score.size(); i++) {
+        if (*max_score == tmp_hist.score[i]) {
+            tmp.push_back(strategies_names[tmp_hist.challenged[i]]);
+        }
+    }
+    printer.printWinner(tmp);
+    history.push_back(tmp_hist);
 }
 
 void Simulator::startCompetitionDet(const std::vector<int> &now_challenging) {
     Round tmp_hist;
+    tmp_hist.challenged = now_challenging;
+    tmp_hist.names.push_back(strategies_names[now_challenging[0]]);
+    tmp_hist.names.push_back(strategies_names[now_challenging[1]]);
+    tmp_hist.names.push_back(strategies_names[now_challenging[2]]);
     for (int i = 0; i < num_steps; i++) {
         std::string command;
         std::cin >> command;
@@ -20,13 +35,24 @@ void Simulator::startCompetitionDet(const std::vector<int> &now_challenging) {
             return;
         } else {
             nextStep(now_challenging, tmp_hist);
+            printer.printDetails(tmp_hist);
         }
     }
-    printer.printDetails((tmp_hist));
+
+    std::vector<std::string> winners;
+    auto max_score = std::max_element(tmp_hist.score.begin(), tmp_hist.score.end());
+    for (int i = 0; i < tmp_hist.score.size(); i++) {
+        if (*max_score == tmp_hist.score[i]) {
+            winners.push_back(strategies_names[tmp_hist.challenged[i]]);
+        }
+    }
+    printer.printWinner(winners);
     history.push_back(tmp_hist);
 }
 
 void Simulator::startTournament() {
+    std::vector<int> total_result(strategies.size(), 0);
+
     getTournamentTable(strategies.size());
 
     for (auto &i : tournament_table) {
@@ -35,6 +61,20 @@ void Simulator::startTournament() {
         strategies[i[1]]->reset();
         strategies[i[2]]->reset();
     }
+    for (auto &i : history) {
+        total_result[i.challenged[0]] += i.score[0];
+        total_result[i.challenged[1]] += i.score[1];
+        total_result[i.challenged[2]] += i.score[2];
+    }
+
+    auto max_score = std::max_element(total_result.begin(), total_result.end());
+    for (int i = 0; i < total_result.size(); i++) {
+        if (*max_score == total_result[i]) {
+            winners.push_back(strategies_names[i]);
+        }
+    }
+    printer.printResultTournament(strategies_names, total_result);
+    printer.printWinner(winners);
 }
 
 void Simulator::setNumSteps(const unsigned int steps) {
@@ -97,11 +137,10 @@ bool Simulator::startGame() {
     switch (mode) {
         case COMPETITION:
             startCompetition({0, 1, 2});
-            printer.printResultComp(history[0]);
             break;
         case COMPETITION_DET:
             startCompetitionDet({0, 1, 2});
-            printer.printResultComp(history[0]);
+
             break;
         case TOURNAMENT:
             startTournament();

@@ -18,9 +18,10 @@ struct Round {
 
 class Printer {
    public:
+    void printResultTournament(std::vector<std::string> &strategies, std::vector<int> &total_score);
     void printResultComp(Round &round, int round_number);
     void printDetails(Round &interim_result);
-    void printWinner(std::vector<std::string> &winners, bool draw);
+    void printWinner(std::vector<std::string> &winners);
 
    private:
     void printRoundResult(Round &round, size_t round_num, std::vector<std::string>);

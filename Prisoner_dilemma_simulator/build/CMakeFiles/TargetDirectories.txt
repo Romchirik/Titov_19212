@@ -1,3 +1,0 @@
-/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/build/CMakeFiles/rebuild_cache.dir
-/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/build/CMakeFiles/edit_cache.dir
-/home/romchirik/NSU/19212_Titov/Prisoner_dilemma_simulator/build/CMakeFiles/Prisoner_dilemma_simulator.dir

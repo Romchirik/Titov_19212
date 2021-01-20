@@ -1,4 +1,5 @@
 #include <dlfcn.h>
+#include <gtest/gtest.h>
 
 #include <iostream>
 #include <memory>
@@ -37,21 +38,36 @@ void *load_strategy_dll(std::string &strategy_name) {
     return handle;
 }
 
+int test(int argc, char *argv[]) {
+    std::vector<std::string> a = {"all-defect",
+                                  "all-cooperate",
+                                  "go-by-majority",
+                                  "random",
+                                  "soft-tit-for-tat",
+                                  "tough-tit-for-tat"};
+
+    for (auto &i : a) {
+        load_strategy_dll(i);
+    }
+
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
 int main(int argc, char *argv[]) {
     std::vector<void *> libs;
     InputHandler handler;
     Simulator game = Simulator();
-    // if (!handler.parseInput(argc, argv)) {
-    //     std::cout << "bad input, input pattern:\n"
-    //               << DEFAULT_INPUT_PATTERN;
-    //     return 0;
-    // }
-    handler.mode = COMPETITION_DET;
-    handler.num_steps = 10;
+    if (!handler.parseInput(argc, argv)) {
+        std::cout << "bad input, input pattern:\n"
+                  << DEFAULT_INPUT_PATTERN;
+        return 0;
+    }
 
-    handler.strategies.push_back("random");
-    handler.strategies.push_back("random");
-    handler.strategies.push_back("random");
+    if (handler.testing) {
+        test(argc, argv);
+        exit(0);
+    }
 
     for (auto &i : handler.strategies) {
         void *tmp = load_strategy_dll(i);

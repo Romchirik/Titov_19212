@@ -1,11 +1,12 @@
 #pragma once
 
 #include <memory>
-#include "Strategy.h"
-#include "../../macro.h"
+
 #include "../../Factory/Factory.h"
+#include "../../macro.h"
+#include "Strategy.h"
 class GoByMajority : public Strategy {
-public:
+   public:
     GoByMajority() = default;
 
     ~GoByMajority() = default;
@@ -14,7 +15,9 @@ public:
 
     bool makeDecision(const std::vector<bool> &prev_d1) override;
 
-private:
+    void reset() override;
+
+   private:
     int other_coop_counter = 0;
     int other_defections_counter = 0;
 };

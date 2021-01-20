@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../macro.h"
-
+#include <string>
 #include <unordered_map>
 #include <vector>
-#include <string>
+
+#include "../macro.h"
 
 struct InputHandler {
     InputHandler() = default;
@@ -18,4 +18,5 @@ struct InputHandler {
     std::vector<std::string> strategies;
     char mode = COMPETITION_DET;
     int num_steps = DEFAULT_STEPS;
+    bool testing = false;
 };

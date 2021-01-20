@@ -2,11 +2,11 @@
 
 #include <memory>
 
-#include "Strategy.h"
 #include "../../macro.h"
+#include "Strategy.h"
 
 class ToughTitForTat : public Strategy {
-public:
+   public:
     ToughTitForTat() = default;
 
     ~ToughTitForTat() = default;
@@ -14,5 +14,6 @@ public:
     bool makeDecision(const std::vector<bool> &prev_d1) override;
 
     bool makeDecision(const std::vector<bool> &prev_d1, const std::vector<bool> &prev_d2) override;
-};
 
+    void reset() override;
+};

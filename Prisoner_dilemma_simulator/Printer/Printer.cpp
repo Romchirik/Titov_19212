@@ -46,8 +46,18 @@ void Printer::printDetails(Round &interim_result) {
     std::cout << " " << interim_result.score[2] << std::endl;
 }
 
-void Printer::printWinner(std::vector<std::string> &winners, bool draw) {
-    if (draw) {
+void Printer::printResultTournament(std::vector<std::string> &strategies, std::vector<int> &total_score) {
+    std::cout << "Total score: " << std::endl;
+
+    for (int i = 0; i < strategies.size(); i++) {
+        std::cout << "    " << std::setw(20) << std::left << strategies[i]
+                  << std::right << total_score[i]
+                  << std::endl;
+    }
+}
+
+void Printer::printWinner(std::vector<std::string> &winners) {
+    if (winners.size() != 1) {
         std::cout << "Draw: ";
         for (auto &i : winners) {
             std::cout << i << ", ";
