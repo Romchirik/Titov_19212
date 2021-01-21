@@ -57,7 +57,7 @@ int test(int argc, char *argv[]) {
 int main(int argc, char *argv[]) {
     std::vector<void *> libs;
     InputHandler handler;
-    Simulator game = Simulator();
+    Simulator game;
     if (!handler.parseInput(argc, argv)) {
         std::cout << "bad input, input pattern:\n"
                   << DEFAULT_INPUT_PATTERN;
@@ -89,8 +89,5 @@ int main(int argc, char *argv[]) {
     game.setNumSteps(handler.num_steps);
     game.startGame();
 
-    for (void *&i : libs) {
-        dlclose(i);
-    }
     return 0;
 }

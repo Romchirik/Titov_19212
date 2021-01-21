@@ -19,6 +19,8 @@ class Simulator {
    public:
     Simulator();
 
+    Simulator(const Simulator &a) = delete;
+
     ~Simulator() = default;
 
     void setNumSteps(unsigned int steps);
@@ -57,7 +59,7 @@ class Simulator {
     char mode = COMPETITION;
     std::vector<Round> history;
     std::vector<std::string> strategies_names;
-    std::vector<std::shared_ptr<Strategy>> strategies;
+    std::vector<std::unique_ptr<Strategy>> strategies;
     std::unordered_map<std::string, std::vector<int>> game_matrix;
     std::vector<std::string> winners;
     std::vector<std::vector<int>> tournament_table;

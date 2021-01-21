@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.3, 2020-12-27T14:01:48. -->
+<!-- Written by QtCreator 4.13.3, 2021-01-20T19:00:29. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -323,8 +323,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/romchirik/CLionProjects/19212_Titov/GameLife/GameLife.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/romchirik/CLionProjects/19212_Titov/GameLife/GameLife.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">GameLife2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/romchirik/NSU/19212_Titov/GameLife/GameLife.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/romchirik/NSU/19212_Titov/GameLife/GameLife.pro</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>

@@ -100,7 +100,7 @@ bool Simulator::addStrategies(std::vector<std::string> &s) {
     bool strategy_not_found = false;
     for (auto &i : s) {
         strategies.push_back(factory.create(i));
-        if (strategies.back() == std::shared_ptr<Strategy>(nullptr)) {
+        if (strategies.back() == nullptr) {
             strategy_not_found = true;
             error_message += "Strategy not found: " + i + "\n";
         } else {
@@ -153,8 +153,8 @@ bool Simulator::startGame() {
 }
 
 std::vector<int> Simulator::getScore(const bool d0, const bool d1, const bool d2) {
-    std::vector<int> tmp = game_matrix.at(decisionsToString(d0, d1, d2));
-    return tmp;
+    return game_matrix.at(decisionsToString(d0, d1, d2));
+    ;
 }
 
 std::string Simulator::decisionsToString(const bool d0, const bool d1, const bool d2) {

@@ -5,8 +5,6 @@ set(CMAKE_CXX_STANDARD 14)
 
 link_directories(StrategiesStuff/)
 
-
-
 add_subdirectory(googletest)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
