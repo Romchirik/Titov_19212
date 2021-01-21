@@ -22,8 +22,7 @@ void *load_strategy_dll(std::string &strategy_name) {
     void *handle = dlopen(filename.c_str(), RTLD_LAZY);
 
     if (!handle) {
-        std::cerr << "Cannot load strategy: " << strategy_name << std::endl;
-        exit(1);
+        return nullptr;
     }
 
     creator = (std::unique_ptr<Strategy>(*)())dlsym(handle, "create");
@@ -60,7 +59,7 @@ int main(int argc, char *argv[]) {
     Simulator game;
     if (!handler.parseInput(argc, argv)) {
         std::cout << "bad input, input pattern:\n"
-                  << DEFAULT_INPUT_PATTERN;
+                  << DEFAULT_INPUT_PATTERN << std::endl;
         return 0;
     }
 
@@ -72,9 +71,7 @@ int main(int argc, char *argv[]) {
     for (auto &i : handler.strategies) {
         void *tmp = load_strategy_dll(i);
         if (!tmp) {
-            for (auto &j : libs) {
-                dlclose(j);
-            }
+            std::cout << "Can't load strategy: " << i;
             return 0;
         }
         libs.push_back(tmp);
