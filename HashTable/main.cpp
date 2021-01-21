@@ -1,10 +1,10 @@
 #include <iostream>
 
-
 #include "HashTable.h"
+#include "gtest/gtest.h"
 
-int main() {
-    HashTable<int, int> a;
-
+int main(int argc, char* argv[]) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
     return 0;
 }

@@ -1,7 +1,8 @@
-#include "gtest/gtest.h"
-#include "HashTable.h"
 #include <random>
 #include <string>
+
+#include "HashTable.h"
+#include "gtest/gtest.h"
 
 const std::string keys[] = {"Polina", "Grisha", "Sasha", "Artyom", "Natasha", "Seryoga", "Masha", "Rita"};
 const std::string data[] = {"Popova", "Karavayev", "Shapovalov", "Kolesnik", "Kokunina", "Dorn", "Malakhova",
@@ -22,7 +23,6 @@ TEST(HashTableTest, insert_eraise_simple) {
     }
     ASSERT_TRUE(table.empty());
 }
-
 
 TEST(HashTableTest, at_key_fits_value_simple) {
     auto table = HashTable<std::string, std::string>();
@@ -50,7 +50,6 @@ TEST(HashTableTest, at_any_throw_simple) {
 
     ASSERT_ANY_THROW(table.at(keys[5]));
 }
-
 
 TEST(HashTableTest, equal_operator_test) {
     auto table1 = HashTable<std::string, std::string>();
@@ -91,15 +90,13 @@ TEST(HashTableTest, simple_iterator_test) {
     auto iter2 = table.begin();
     EXPECT_EQ(iter1, iter2);
     iter1++;
-    EXPECT_NE(iter1, iter2);
+    EXPECT_TRUE(iter1 == iter2);
     iter1--;
-    EXPECT_EQ(iter1, iter2);
+    EXPECT_TRUE(iter1 == iter2);
 }
-
 
 TEST(HashTableTest, walkthrough_iterator_test) {
     auto table = HashTable<std::string, std::string>();
-
 
     for (int i = 0; i < 8; i++) {
         table.insert(keys[i], data[i]);
@@ -109,4 +106,13 @@ TEST(HashTableTest, walkthrough_iterator_test) {
         auto node = *iter1;
         iter1++;
     }
+}
+
+TEST(HashTableTest, throw_test) {
+    auto table = HashTable<std::string, std::string>();
+    auto it = table.begin();
+    for (int i = 0; i < 8; i++) {
+        table.insert(keys[i], data[i]);
+    }
+    ASSERT_ANY_THROW(it++);
 }
