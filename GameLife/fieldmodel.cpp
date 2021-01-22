@@ -1,66 +1,110 @@
 #include "fieldmodel.h"
 
-FieldModel::FieldModel() {
-    field = new bool[width * height];
-    std::memset(field, false, sizeof(bool) * width * height);
+bool FieldModel::applyTemplate() { return false; }
+
+bool *FieldModel::operator[](size_t idx) { return current_generation[idx]; }
+
+void FieldModel::setTemplateOrigin(size_t new_x, size_t new_y) {
+    template_origin_x = new_x;
+    template_origin_y = new_y;
 }
 
-FieldModel::FieldModel(size_t w, size_t h) : width(w), height(h) {
-    field = new bool[w * h];
-    std::memset(field, false, sizeof(bool) * width * height);
+bool FieldModel::if_draw(size_t x, size_t y) {
+    bool tmp = current_generation[x][y];
+    if (x >= template_origin_x &&
+        x < template_origin_x + template_generation.getWidht() &&
+        x >= template_origin_y &&
+        x < template_origin_y + template_generation.getHeight()) {
+        tmp = tmp ||
+              template_generation[x - template_origin_x][y - template_origin_y];
+    }
+    return tmp;
 }
 
-FieldModel::FieldModel(const FieldModel &a) {
-    this->resize(a.width, a.height);
-    memcpy(this->field, a.field, sizeof(bool) * width * height);
-}
-
-FieldModel::~FieldModel() { delete[] field; }
+size_t FieldModel::getWidth() { return current_generation.getWidht(); }
+size_t FieldModel::getHeight() { return current_generation.getHeight(); }
 
 void FieldModel::reset() {
-    std::memset(field, false, sizeof(bool) * width * height);
+    current_generation.reset();
+    next_generation.reset();
+    template_generation.reset();
 }
-
 void FieldModel::resize(size_t new_w, size_t new_h) {
-    delete[] field;
-    field = new bool[new_w * new_h];
-    memset(field, false, sizeof(bool) * new_w * new_h);
-    width = new_w;
-    height = new_h;
-}
-
-void FieldModel::swap(FieldModel &m) {
-    bool *tmp = this->field;
-    this->field = m.field;
-    m.field = tmp;
-    std::swap(this->width, m.width);
-    std::swap(this->height, m.height);
-}
-
-size_t FieldModel::getWidht() { return width; }
-
-size_t FieldModel::getHeight() { return height; }
-
-bool *FieldModel::operator[](size_t idx) { return field + height * idx; }
-
-FieldModel &FieldModel::operator=(const FieldModel &a) {
-    if (this != &a) {
-        this->resize(a.width, a.height);
-        memcpy(this->field, a.field, sizeof(bool) * width * height);
-    } else {
-        return *this;
+    if (new_h != current_generation.getHeight() ||
+        new_w != current_generation.getWidht()) {
+        current_generation.resize_reset(new_w, new_h);
+        next_generation.resize_reset(new_w, new_h);
     }
-    return *this;
 }
-bool operator==(const FieldModel &m1, const FieldModel &m2) {
-    if (m1.height != m2.height || m1.width != m2.width) {
-        return false;
-    } else {
-        for (size_t i = 0; i < m1.width * m1.height; i++) {
-            if (m1.field[i] != m2.field[i]) {
-                return false;
+
+bool FieldModel::update(RuleHandler &rule_handler) {
+    bool game_continue_flag = false;
+    for (size_t x = 0; x < current_generation.getWidht(); x++) {
+        for (size_t y = 0; y < current_generation.getHeight(); y++) {
+            size_t num_neighbours = countNeighbours(x, y);
+            if (current_generation[x][y]) {
+                if (rule_handler.isAlive(num_neighbours)) {
+                    next_generation[x][y] = true;
+                } else {
+                    next_generation[x][y] = false;
+                }
+            } else {
+                if (rule_handler.isBorn(num_neighbours)) {
+                    next_generation[x][y] = true;
+                } else {
+                    next_generation[x][y] = false;
+                }
+            }
+            if ((current_generation[x][y] != next_generation[x][y]) &&
+                !game_continue_flag) {
+                game_continue_flag = true;
             }
         }
     }
-    return true;
+    current_generation.swap(next_generation);
+    return game_continue_flag;
+}
+
+inline size_t FieldModel::getX(int raw_x) {
+    if (raw_x < 0) {
+        return current_generation.getWidht() + raw_x;
+    } else {
+        return raw_x % current_generation.getWidht();
+    }
+}
+
+inline size_t FieldModel::getY(int raw_y) {
+    if (raw_y < 0) {
+        return current_generation.getHeight() + raw_y;
+    } else {
+        return raw_y % current_generation.getHeight();
+    }
+}
+int FieldModel::countNeighbours(const size_t x, const size_t y) {
+    int num_neighbours = 0;
+
+    // up-left
+    num_neighbours += current_generation[getX(x + 1)][getY(y + 1)];
+    // left
+    num_neighbours += current_generation[getX(x + 1)][getY(y)];
+
+    // down-left
+    num_neighbours += current_generation[getX(x + 1)][getY(y - 1)];
+
+    // down
+    num_neighbours += current_generation[getX(x)][getY(y - 1)];
+
+    // down-right
+    num_neighbours += current_generation[getX(x - 1)][getY(y - 1)];
+
+    // right
+    num_neighbours += current_generation[getX(x - 1)][getY(y)];
+
+    // up-right
+    num_neighbours += current_generation[getX(x - 1)][getY(y + 1)];
+
+    // up
+    num_neighbours += current_generation[getX(x)][getY(y + 1)];
+
+    return num_neighbours;
 }

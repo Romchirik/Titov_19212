@@ -16,9 +16,11 @@ class RuleHandler {
     QString &getStringRule();
 
   private:
-    QString string_rule = "B3/S23";
-    std::vector<size_t> born = {3};
-    std::vector<size_t> survive = {2, 3};
+    QString string_rule = "b3/s23";
+    bool born[9] = {false, false, false, true, false,
+                    false, false, false, false};
+    bool alive[9] = {false, false, true,  true, false,
+                     false, false, false, false};
 };
 
 #endif // RULECONTROLLER_H

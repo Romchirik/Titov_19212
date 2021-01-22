@@ -21,9 +21,9 @@ class FileHandler {
     size_t saveFile(QString &filepath);
 
     void setRule(QString &r);
-    void setModel(FieldModel &m);
+    void setModel(Field &m);
     QString &getParsedRule();
-    FieldModel &getParsedModel();
+    Field &getParsedModel();
     void reset();
 
   private:
@@ -31,7 +31,7 @@ class FileHandler {
 
   private:
     QString rule;
-    FieldModel model;
+    Field model;
 };
 
 #endif // FILEPARSER_H

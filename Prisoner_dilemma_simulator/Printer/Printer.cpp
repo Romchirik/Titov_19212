@@ -67,3 +67,12 @@ void Printer::printWinner(std::vector<std::string> &winners) {
         std::cout << "Winner: " << winners[0] << std::endl;
     }
 }
+
+bool Printer::next() {
+    std::string command;
+    std::cin >> command;
+    if (command == "quit") {
+        return false;
+    }
+    return true;
+}

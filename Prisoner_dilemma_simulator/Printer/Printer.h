@@ -23,6 +23,8 @@ class Printer {
     void printDetails(Round &interim_result);
     void printWinner(std::vector<std::string> &winners);
 
+    bool next();
+
    private:
     void printRoundResult(Round &round, size_t round_num, std::vector<std::string>);
 };

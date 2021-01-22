@@ -86,7 +86,7 @@ size_t FileHandler::parseSettings(QString &line) {
     if (!ok) {
         return BAD_READ;
     }
-    model.resize(width, height);
+    model.resize_reset(width, height);
     rule = pieces[2];
     return OK;
 }
@@ -169,10 +169,10 @@ size_t FileHandler::parseFile(QString &filepath) {
 
 void FileHandler::setRule(QString &r) { rule = r; }
 
-void FileHandler::setModel(FieldModel &m) { model = m; }
+void FileHandler::setModel(Field &m) { model = m; }
 
 QString &FileHandler::getParsedRule() { return rule; }
 
-FieldModel &FileHandler::getParsedModel() { return model; }
+Field &FileHandler::getParsedModel() { return model; }
 
 void FileHandler::reset() { model.reset(); }

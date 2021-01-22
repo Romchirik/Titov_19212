@@ -1,3 +1,6 @@
 [submodule "Prisoner_dilemma_simulator/googletest"]
 	path = Prisoner_dilemma_simulator/googletest
 	url = https://github.com/google/googletest.git
+[submodule "HashTable/googletest"]
+	path = HashTable/googletest
+	url = https://github.com/google/googletest.git

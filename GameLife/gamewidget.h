@@ -17,18 +17,14 @@ class GameWidget : public QWidget {
     ~GameWidget();
 
     QString &getRule();
-    void setTemplate(FieldModel &new_t);
-    void setModel(FieldModel &new_m);
 
   protected:
     void wheelEvent(QWheelEvent *e);
     void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *e);
-    void mouseReleaseEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
 
   public slots:
-    FieldModel &getModel();
     void resizeX(const QString &x);
     void resizeY(const QString &y);
     void setRule(const QString &text);
@@ -36,7 +32,10 @@ class GameWidget : public QWidget {
     void startGame();
     void stopGame();
     void resetGame();
-    void updateGame();
+    void openFileAsTemplate();
+    void openFileAsProject();
+    void saveProject();
+    void updateModel();
 
   signals:
     void ruleChanged(QString &rule);
@@ -44,8 +43,6 @@ class GameWidget : public QWidget {
     void lockSettings(bool ok);
 
   private:
-    void insertTemplate();
-    void updateField();
     void drawField(QPainter &painter);
 
     size_t getX(int row_x);
@@ -57,9 +54,8 @@ class GameWidget : public QWidget {
     RuleHandler rule_handler;
     size_t num_generations = 0;
 
-    FieldModel next_generation;
-    FieldModel current_generation;
-    FieldModel template_generation;
+    FieldModel field;
+
     int origin_x = 0;
     int origin_y = 0;
 
@@ -69,7 +65,6 @@ class GameWidget : public QWidget {
     size_t template_y = 0;
     bool set_template = false;
     bool game_stop_flag;
-    bool mouse_pressed = false;
     static constexpr size_t DEFAULT_TIMER_INTERVAL = 200;
 };
 

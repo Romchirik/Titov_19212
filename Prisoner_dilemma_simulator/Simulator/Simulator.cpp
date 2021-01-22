@@ -28,14 +28,12 @@ void Simulator::startCompetitionDet(const std::vector<int> &now_challenging) {
     tmp_hist.names.push_back(strategies_names[now_challenging[1]]);
     tmp_hist.names.push_back(strategies_names[now_challenging[2]]);
     for (int i = 0; i < num_steps; i++) {
-        std::string command;
-        std::cin >> command;
-        if (command == "quit") {
-            history.push_back(tmp_hist);
-            return;
-        } else {
+        if (printer.next()) {
             nextStep(now_challenging, tmp_hist);
             printer.printDetails(tmp_hist);
+        } else {
+            history.push_back(tmp_hist);
+            return;
         }
     }
 
@@ -154,7 +152,6 @@ bool Simulator::startGame() {
 
 std::vector<int> Simulator::getScore(const bool d0, const bool d1, const bool d2) {
     return game_matrix.at(decisionsToString(d0, d1, d2));
-    ;
 }
 
 std::string Simulator::decisionsToString(const bool d0, const bool d1, const bool d2) {
@@ -180,7 +177,6 @@ bool Simulator::setDecisionsMatrix(const std::vector<std::pair<std::string, std:
     if (matrix.size() != 8) {
         return false;
     }
-
     for (const auto &i : test_tmp) {
         auto it = game_matrix.find(i);
         if (it == game_matrix.end()) {
