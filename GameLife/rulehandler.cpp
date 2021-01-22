@@ -19,8 +19,11 @@ bool RuleHandler::parseInputRule(const QString &text) {
     bool survive_flag = false;
     bool bad_read = false;
 
-    std::vector<size_t> survive_tmp;
-    std::vector<size_t> born_tmp;
+    bool tmp_alive[9] = {false, false, false, false, false,
+                         false, false, false, false};
+    bool tmp_born[9] = {false, false, false, false, false,
+                        false, false, false, false};
+
     for (auto &i : text) {
         if (i == 'B' || i == 'b') {
             born_flag = true;
@@ -38,19 +41,36 @@ bool RuleHandler::parseInputRule(const QString &text) {
         if (born_flag) {
             if (i.isDigit()) {
                 if (i.digitValue() <= 8) {
-                    alive[i.digitValue()] = true;
+                    tmp_born[i.digitValue()] = true;
                 }
             }
         }
         if (survive_flag) {
             if (i.isDigit()) {
                 if (i.digitValue() <= 8) {
-                    born[i.digitValue()] = true;
+                    tmp_alive[i.digitValue()] = true;
                 }
             }
         }
         if (bad_read) {
             return false;
+        }
+    }
+    for (int i = 0; i < 9; i++) {
+        alive[i] = tmp_alive[i];
+        born[i] = tmp_born[i];
+    }
+
+    string_rule = "b";
+    for (int i = 0; i < 9; i++) {
+        if (born[i]) {
+            string_rule += QString::number(i);
+        }
+    }
+    string_rule += "/s";
+    for (int i = 0; i < 9; i++) {
+        if (alive[i]) {
+            string_rule += QString::number(i);
         }
     }
     return true;

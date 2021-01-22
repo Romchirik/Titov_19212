@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QString>
 #include <algorithm>
-#include <vector>
+#include <cstring>
 
 class RuleHandler {
   public:

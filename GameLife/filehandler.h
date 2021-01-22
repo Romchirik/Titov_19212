@@ -2,7 +2,6 @@
 #define FILEPARSER_H
 
 #include "fieldmodel.h"
-#include <QDebug>
 #include <QFile>
 #include <QFileInfo>
 #include <QString>
@@ -23,7 +22,7 @@ class FileHandler {
     void setRule(QString &r);
     void setModel(Field &m);
     QString &getParsedRule();
-    Field &getParsedModel();
+    Field &getParsedField();
     void reset();
 
   private:

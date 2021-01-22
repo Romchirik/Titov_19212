@@ -23,6 +23,9 @@ class FieldModel {
     void setTemplateOrigin(size_t new_x, size_t new_y);
     bool applyTemplate();
 
+    void setNewField(Field &new_field);
+    Field &getFieldToSave();
+
   private:
     int countNeighbours(const size_t x, const size_t y);
     size_t getX(int raw_x);

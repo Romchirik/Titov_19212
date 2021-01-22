@@ -1,5 +1,12 @@
 #include "fieldmodel.h"
 
+void FieldModel::setNewField(Field &new_field) {
+    current_generation = new_field;
+    next_generation.resize_reset(new_field.getWidht(), new_field.getHeight());
+}
+
+Field &FieldModel::getFieldToSave() { return current_generation; }
+
 bool FieldModel::applyTemplate() { return false; }
 
 bool *FieldModel::operator[](size_t idx) { return current_generation[idx]; }
@@ -66,19 +73,14 @@ bool FieldModel::update(RuleHandler &rule_handler) {
 }
 
 inline size_t FieldModel::getX(int raw_x) {
-    if (raw_x < 0) {
-        return current_generation.getWidht() + raw_x;
-    } else {
-        return raw_x % current_generation.getWidht();
-    }
+    return (raw_x < 0) ? current_generation.getWidht() + raw_x
+                       : raw_x % current_generation.getWidht();
 }
 
 inline size_t FieldModel::getY(int raw_y) {
-    if (raw_y < 0) {
-        return current_generation.getHeight() + raw_y;
-    } else {
-        return raw_y % current_generation.getHeight();
-    }
+    return (raw_y < 0) ? current_generation.getWidht() + raw_y
+                       : raw_y % current_generation.getHeight();
+    ;
 }
 int FieldModel::countNeighbours(const size_t x, const size_t y) {
     int num_neighbours = 0;

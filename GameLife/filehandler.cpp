@@ -1,23 +1,13 @@
 #include "filehandler.h"
 
-inline QChar getStateReversed(bool a) {
-    if (a) {
-        return 'o';
-    }
-    return 'b';
-}
+inline QChar getStateReversed(bool a) { return (a) ? 'o' : 'b'; }
 
-inline bool getState(QChar a) {
-    if (a == 'o') {
-        return true;
-    }
-    return false;
-}
+inline bool getState(QChar a) { return (a == 'o') ? true : false; }
 
 size_t FileHandler::saveFile(QString &filepath) {
 
     QFile file(filepath);
-    QString row_field;
+    QString raw_field;
     QString header;
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return ACCESS_DENIED;
@@ -31,18 +21,18 @@ size_t FileHandler::saveFile(QString &filepath) {
                 cells_counter++;
             } else {
                 if (cells_counter > 1) {
-                    row_field += QString::number(cells_counter);
+                    raw_field += QString::number(cells_counter);
                 }
-                row_field += getStateReversed(last_state);
+                raw_field += getStateReversed(last_state);
                 last_state = model[x][y];
                 cells_counter = 1;
             }
         }
         if (cells_counter > 1) {
-            row_field += QString::number(cells_counter);
+            raw_field += QString::number(cells_counter);
         }
-        row_field += getStateReversed(last_state);
-        row_field += "$";
+        raw_field += getStateReversed(last_state);
+        raw_field += "$";
     }
 
     header += "x = ";
@@ -55,13 +45,16 @@ size_t FileHandler::saveFile(QString &filepath) {
     header += rule;
 
     out << header << '\n';
-    while (row_field.length() >= 70) {
-        out << row_field.chopped(70) << '\n';
-        row_field.chop(70);
+
+    size_t out_symbols_counter = 0;
+    for (auto &i : raw_field) {
+        out << i;
+        out_symbols_counter++;
+        if (out_symbols_counter == 70) {
+            out << '\n';
+        }
     }
-    if (row_field.length() != 0) {
-        out << row_field;
-    }
+
     return OK;
 }
 
@@ -173,6 +166,6 @@ void FileHandler::setModel(Field &m) { model = m; }
 
 QString &FileHandler::getParsedRule() { return rule; }
 
-Field &FileHandler::getParsedModel() { return model; }
+Field &FileHandler::getParsedField() { return model; }
 
 void FileHandler::reset() { model.reset(); }

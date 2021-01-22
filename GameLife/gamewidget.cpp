@@ -2,8 +2,52 @@
 
 void GameWidget::openFileAsTemplate() {}
 
-void GameWidget::openFileAsProject() {}
-void GameWidget::saveProject() {}
+void GameWidget::openFileAsProject() {
+    stopGame();
+    QString filepath = QFileDialog::getOpenFileName(
+        nullptr, tr("Open Project"), "", tr("Golly generated files (*.rle)"));
+    size_t ok = file_handler.parseFile(filepath);
+    if (!ok) {
+        field.setNewField(file_handler.getParsedField());
+        rule_handler.parseInputRule(file_handler.getParsedRule());
+    } else {
+        switch (ok) {
+        case BAD_READ:
+            QMessageBox::warning(this, tr("open file"),
+                                 tr("bad file encoding"));
+            break;
+        case ACCESS_DENIED:
+            QMessageBox::warning(this, tr("open file"), tr("access denied"));
+
+            break;
+        case WRONG_FORMAT:
+            QMessageBox::warning(this, tr("open file"), tr("access denied"));
+            break;
+        default:
+            QMessageBox::warning(this, tr("open file"), tr("unknown error"));
+            break;
+        }
+    }
+}
+
+void GameWidget::saveProject() {
+    stopGame();
+    QString filepath = QFileDialog::getSaveFileName(
+        this, tr("Save Project"), "", tr("Golly generated rle (*.rle)"));
+    file_handler.setModel(field.getFieldToSave());
+    file_handler.setRule(rule_handler.getStringRule());
+    int ok = file_handler.saveFile(filepath);
+    if (ok) {
+        switch (ok) {
+        case ACCESS_DENIED:
+            QMessageBox::warning(this, tr("save file"), tr("access denied"));
+            break;
+        default:
+            QMessageBox::warning(this, tr("save file"), tr("unknown error"));
+            break;
+        }
+    }
+}
 
 GameWidget::GameWidget(QWidget *parent) : QWidget(parent), timer(new QTimer()) {
     setMouseTracking(true);
@@ -76,6 +120,7 @@ void GameWidget::updateModel() {
                                     "Future generations will be the same"),
                                  QMessageBox::Ok);
     }
+    update();
 }
 
 void GameWidget::paintEvent(QPaintEvent *) {

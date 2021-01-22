@@ -1,14 +1,17 @@
 #ifndef GAMEWIDGET_H
 #define GAMEWIDGET_H
 
+#include "field.h"
+#include "fieldmodel.h"
+#include "filehandler.h"
+#include "rulehandler.h"
+
+#include <QFileDialog>
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QTimer>
 #include <QWidget>
-
-#include "fieldmodel.h"
-#include "rulehandler.h"
 
 class GameWidget : public QWidget {
     Q_OBJECT
@@ -52,6 +55,7 @@ class GameWidget : public QWidget {
   private:
     QTimer *timer;
     RuleHandler rule_handler;
+    FileHandler file_handler;
     size_t num_generations = 0;
 
     FieldModel field;
