@@ -18,13 +18,14 @@ void FieldModel::setTemplateOrigin(size_t new_x, size_t new_y) {
 
 bool FieldModel::if_draw(size_t x, size_t y) {
     bool tmp = current_generation[x][y];
-    if (x >= template_origin_x &&
-        x < template_origin_x + template_generation.getWidht() &&
-        x >= template_origin_y &&
-        x < template_origin_y + template_generation.getHeight()) {
-        tmp = tmp ||
-              template_generation[x - template_origin_x][y - template_origin_y];
-    }
+    //    if (x >= template_origin_x &&
+    //        x < template_origin_x + template_generation.getWidht() &&
+    //        x >= template_origin_y &&
+    //        x < template_origin_y + template_generation.getHeight()) {
+    //        tmp = tmp ||
+    //              template_generation[x - template_origin_x][y -
+    //              template_origin_y];
+    //    }
     return tmp;
 }
 
