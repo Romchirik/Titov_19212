@@ -1,32 +1,67 @@
 package ru.nsu;
 
-public class Pair {
-    int x1 = 0;
-    int x2 = 0;
+import ru.nsu.exceptons.PtrOutOfBounds;
+import ru.nsu.Direction;
 
-    public Pair(int val1, int val2) {
-        x1 = val1;
-        x2 = val2;
+
+public class InstructionPointer {
+    int row = 0;
+    int column = 0;
+    Direction direction = Direction.UP;
+
+    public InstructionPointer(int val1, int val2) {
+        row = val1;
+        column = val2;
     }
 
-    void setX1(int val) {
-        x1 = val;
+    public void setRow(int val) {
+        row = val;
     }
 
-    void setX2(int val) {
-        x2 = val;
+    public void setColumn(int val) {
+        column = val;
     }
 
-    void setPair(int val1, int val2) {
-        x1 = val1;
-        x2 = val2;
+    public void setPair(int val1, int val2) {
+        row = val1;
+        column = val2;
     }
 
-    int first() {
-        return x1;
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
-    int second() {
-        return x2;
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public void step() throws PtrOutOfBounds {
+        switch (direction) {
+            case UP:
+                row++;
+                break;
+            case DOWN:
+                row--;
+                break;
+            case LEFT:
+                column++;
+                break;
+            case RIGHT:
+                column--;
+                break;
+            default:
+        }
+        if (row < 0 || row > 24 || column < 0 || column > 80) {
+            throw new PtrOutOfBounds("Instruction pointer out of bounds!");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return new String("row: " + row + ";" + "column: " + column);
     }
 }
