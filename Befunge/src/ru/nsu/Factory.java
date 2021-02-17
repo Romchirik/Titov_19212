@@ -19,7 +19,7 @@ public class Factory {
         availableInstructions.put(instructionName, loadedClass);
     }
 
-    Instruction createInstruction(Character instructionName) throws
+    public Instruction createInstruction(Character instructionName) throws
             ClassNotFoundException,
             NoSuchMethodException,
             InvocationTargetException,

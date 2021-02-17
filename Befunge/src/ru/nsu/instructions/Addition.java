@@ -17,8 +17,6 @@ public class Addition implements Instruction {
             ErrorPrinter.emptyStack(context, instructionPointer, '+');
             return false;
         }
-
-
         return true;
     }
 }

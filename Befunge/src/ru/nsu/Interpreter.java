@@ -8,8 +8,12 @@ public class Interpreter {
     Properties appProperties = new Properties();
 
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
+        if(args.length != 1){
+            return;
+        }
 
+        return;
     }
 
 

@@ -3,6 +3,8 @@ package ru.nsu;
 import ru.nsu.exceptons.PtrOutOfBounds;
 import ru.nsu.Direction;
 
+import javax.lang.model.type.PrimitiveType;
+
 
 public class InstructionPointer {
     int row = 0;
@@ -14,12 +16,18 @@ public class InstructionPointer {
         column = val2;
     }
 
-    public void setRow(int val) {
+    public void setRow(int val) throws PtrOutOfBounds {
         row = val;
+        if (row < 0 || row >= 80) {
+            throw new PtrOutOfBounds("Ptr out of bounds!");
+        }
     }
 
-    public void setColumn(int val) {
+    public void setColumn(int val) throws PtrOutOfBounds {
         column = val;
+        if (column < 0 || column >= 25) {
+            throw new PtrOutOfBounds("Ptr out of bounds!");
+        }
     }
 
     public void setPair(int val1, int val2) {
