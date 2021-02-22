@@ -1,6 +1,5 @@
 package ru.nsu.instructions;
 
-import ru.nsu.Instruction;
 import ru.nsu.InstructionPointer;
 
 import java.util.Deque;
