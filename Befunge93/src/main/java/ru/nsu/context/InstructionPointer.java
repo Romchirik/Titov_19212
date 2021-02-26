@@ -1,6 +1,6 @@
 package ru.nsu;
 
-import ru.nsu.exceptons.PtrOutOfBounds;
+import ru.nsu.Direction;
 
 
 public class InstructionPointer {
@@ -38,7 +38,7 @@ public class InstructionPointer {
         return column;
     }
 
-    public void step() throws PtrOutOfBounds {
+    public void step(){
         switch (direction) {
             case UP:
                 row++;
@@ -53,9 +53,6 @@ public class InstructionPointer {
                 column--;
                 break;
             default:
-        }
-        if (row < 0 || row > 24 || column < 0 || column > 80) {
-            throw new PtrOutOfBounds("Instruction pointer out of bounds!");
         }
     }
 

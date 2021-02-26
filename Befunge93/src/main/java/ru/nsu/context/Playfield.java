@@ -11,7 +11,6 @@ public class Playfield {
 
     Character[][] field = new Character[PLAYFIELD_HEIGHT][PLAYFIELD_WIDTH];
 
-
     public void setInstruction(final int row, final int column, Character symbol) {
         field[column][row] = symbol;
     }
