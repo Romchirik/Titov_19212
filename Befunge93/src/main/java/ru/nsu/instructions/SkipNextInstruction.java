@@ -1,13 +1,13 @@
 package ru.nsu.instructions;
 
-import ru.nsu.InstructionPointer;
+import ru.nsu.context.Context;
 
-import java.util.Deque;
+import java.util.NoSuchElementException;
 
 public class SkipNextInstruction implements Instruction {
-
     @Override
-    public boolean exec(Deque<Integer> context, InstructionPointer instructionPointer) {
+    public boolean exec(Context context, Character instruction) throws NoSuchElementException {
+        context.setSkipTrue();
         return true;
     }
 }

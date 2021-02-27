@@ -1,16 +1,18 @@
 package ru.nsu.instructions;
 
-import ru.nsu.InstructionPointer;
+import ru.nsu.context.Context;
 
-import java.util.Deque;
 import java.util.NoSuchElementException;
 
-public class Division implements Instruction {
+import org.apache.log4j.Logger;
 
+public class Division implements Instruction {
+    static final Logger logger = Logger.getLogger(Division.class);
     @Override
-    public boolean exec(Deque<Integer> context, InstructionPointer instructionPointer) {
+    public boolean exec(Context context, Character instruction) throws NoSuchElementException{
         try {
-            context.push(context.pop() / context.pop());
+            Integer a = context.stack.pop();
+            context.stack.push(context.stack.pop() / a);
         } catch (NoSuchElementException e) {
             return false;
         }

@@ -1,7 +1,6 @@
-package ru.nsu.exceptons;
+package ru.nsu.context;
 
 import org.apache.log4j.Logger;
-import ru.nsu.context.Playfield;
 
 import java.io.IOException;
 import java.nio.file.Files;

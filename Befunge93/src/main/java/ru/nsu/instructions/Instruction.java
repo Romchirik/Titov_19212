@@ -1,9 +1,9 @@
 package ru.nsu.instructions;
 
-import ru.nsu.InstructionPointer;
+import ru.nsu.context.Context;
 
-import java.util.Deque;
+import java.util.NoSuchElementException;
 
 public interface Instruction {
-    boolean exec(Deque<Integer> context, InstructionPointer instructionPointer);
+    boolean exec(Context context, Character instruction) throws NoSuchElementException;
 }

@@ -1,12 +1,14 @@
-package ru.nsu;
-
-import ru.nsu.Direction;
+package ru.nsu.context;
 
 
 public class InstructionPointer {
-    int row = 0;
-    int column = 0;
+    private int row = 0;
+    private int column = 0;
     Direction direction = Direction.UP;
+
+    public InstructionPointer() {
+
+    }
 
     public InstructionPointer(int val1, int val2) {
         row = val1;
@@ -38,19 +40,19 @@ public class InstructionPointer {
         return column;
     }
 
-    public void step(){
+    public void step() {
         switch (direction) {
             case UP:
-                row++;
-                break;
-            case DOWN:
                 row--;
                 break;
+            case DOWN:
+                row++;
+                break;
             case LEFT:
-                column++;
+                column--;
                 break;
             case RIGHT:
-                column--;
+                column++;
                 break;
             default:
         }

@@ -4,10 +4,11 @@ import ru.nsu.context.Context;
 
 import java.util.NoSuchElementException;
 
-public class PopAsInteger implements Instruction {
+//TODO доделать класс
+public class AskCharPush implements Instruction
+{
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        System.out.printf("%d ", context.stack.pop());
-        return true;
+        return false;
     }
 }

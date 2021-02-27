@@ -1,11 +1,11 @@
-package ru.nsu;
+package ru.nsu.context;
 
 import java.util.Random;
 
 public enum Direction {
     UP, DOWN, LEFT, RIGHT;
 
-    public static Direction randomDirection(){
+    public static Direction randomDirection() {
         Direction[] values = Direction.values();
         int randIdx = new Random().nextInt(Direction.values().length);
         return values[randIdx];

@@ -1,15 +1,15 @@
 package ru.nsu.instructions;
 
-import ru.nsu.Direction;
-import ru.nsu.InstructionPointer;
+import ru.nsu.context.Context;
+import ru.nsu.context.Direction;
 
-import java.util.Deque;
+import java.util.NoSuchElementException;
 
 public class StartMovingRight implements Instruction {
 
     @Override
-    public boolean exec(Deque<Integer> context, InstructionPointer instructionPointer) {
-        instructionPointer.setDirection(Direction.RIGHT);
+    public boolean exec(Context context, Character instruction) throws NoSuchElementException {
+        context.instructionPointer.setDirection(Direction.RIGHT);
         return true;
     }
 }
