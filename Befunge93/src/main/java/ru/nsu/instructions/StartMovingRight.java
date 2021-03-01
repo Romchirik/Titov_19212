@@ -9,7 +9,7 @@ public class StartMovingRight implements Instruction {
 
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        context.instructionPointer.setDirection(Direction.RIGHT);
+        context.setDirection(Direction.RIGHT);
         return true;
     }
 }

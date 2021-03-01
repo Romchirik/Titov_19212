@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 public class PlayfieldLoader {
     static Logger logger = Logger.getLogger(PlayfieldLoader.class);
 
+    //Todo добавить форматные строки
     static public Playfield loadField(String filename) throws IOException {
         logger.debug("Trying to load playfield from " + filename);
         Playfield tmp_playfield = new Playfield();

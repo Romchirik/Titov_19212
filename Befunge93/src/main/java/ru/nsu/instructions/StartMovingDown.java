@@ -9,7 +9,7 @@ public class StartMovingDown implements Instruction {
 
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        context.instructionPointer.setDirection(Direction.DOWN);
+        context.setDirection(Direction.DOWN);
         return true;
     }
 }

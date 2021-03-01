@@ -8,11 +8,11 @@ public class SwapStackTop implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
 
-        Integer a = context.stack.pop();
-        Integer b = context.stack.pop();
+        Integer a = context.pop();
+        Integer b = context.pop();
 
-        context.stack.push(a);
-        context.stack.push(b);
+        context.push(a);
+        context.push(b);
 
         return true;
     }

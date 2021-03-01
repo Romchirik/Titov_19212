@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 public class StartMovingRandomDirection implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction)throws NoSuchElementException {
-        context.instructionPointer.setDirection(Direction.randomDirection());
+        context.setDirection(Direction.randomDirection());
         return true;
     }
 }

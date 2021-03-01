@@ -8,8 +8,8 @@ import java.util.NoSuchElementException;
 public class Get implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        context.stack.push((int) context.playfield.getInstruction(context.stack.pop(),
-                context.stack.pop()));
+        context.push((int) context.getInstruction(context.pop(),
+                context.pop()));
         return true;
     }
 }

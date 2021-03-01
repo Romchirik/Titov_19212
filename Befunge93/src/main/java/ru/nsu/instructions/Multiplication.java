@@ -6,12 +6,8 @@ import java.util.NoSuchElementException;
 
 public class Multiplication implements Instruction {
     @Override
-    public boolean exec(Context context, Character instruction) throws NoSuchElementException{
-        try {
-            context.stack.push(context.stack.pop() * context.stack.pop());
-        } catch (NoSuchElementException e) {
-            return false;
-        }
+    public boolean exec(Context context, Character instruction) throws NoSuchElementException {
+        context.push(context.pop() * context.pop());
         return true;
     }
 }

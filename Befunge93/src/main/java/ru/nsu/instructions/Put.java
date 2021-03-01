@@ -8,9 +8,9 @@ import java.util.NoSuchElementException;
 public class Put implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        context.playfield.setInstruction(context.stack.pop(),
-                context.stack.pop(),
-                (char) context.stack.pop().intValue());
+        context.setInstruction(context.pop(),
+                context.pop(),
+                (char) context.pop().intValue());
         return true;
     }
 }

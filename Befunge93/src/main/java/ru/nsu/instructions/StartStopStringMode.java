@@ -12,7 +12,7 @@ public class StartStopStringMode implements Instruction {
         context.step();
         Character charToPush = context.getCurrentInstruction();
         while (charToPush != '"') {
-            context.stack.push((int) charToPush);
+            context.push((int) charToPush);
             context.step();
             charToPush = context.getCurrentInstruction();
         }

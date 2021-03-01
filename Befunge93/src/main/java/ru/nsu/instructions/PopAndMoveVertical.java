@@ -8,10 +8,10 @@ import java.util.NoSuchElementException;
 public class PopAndMoveVertical implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        if (context.stack.pop() == 0) {
-            context.instructionPointer.setDirection(Direction.DOWN);
+        if (context.pop() == 0) {
+            context.setDirection(Direction.DOWN);
         } else {
-            context.instructionPointer.setDirection(Direction.UP);
+            context.setDirection(Direction.UP);
         }
         return true;
     }

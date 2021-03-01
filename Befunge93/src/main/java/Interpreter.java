@@ -50,6 +50,7 @@ public class Interpreter {
                     logger.info("Terminating...");
                     break;
                 }
+                //TODO сделать проверку вместо отлавливания
             } catch (NullPointerException e) {
                 logger.error("No such instruction, further execution is impossible, terminating...");
                 return;

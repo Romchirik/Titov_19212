@@ -5,7 +5,7 @@ import ru.nsu.context.Context;
 import java.util.NoSuchElementException;
 
 /**
- * Конец программы, после исполнения инструкции выполнение прогрпммы завершается
+ * Конец программы, после исполнения инструкции выполнение программы завершается
  */
 public class End implements Instruction{
     @Override

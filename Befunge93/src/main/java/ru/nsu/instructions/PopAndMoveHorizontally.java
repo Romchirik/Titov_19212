@@ -9,10 +9,10 @@ public class PopAndMoveHorizontally implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
 
-        if (context.stack.pop() == 0) {
-            context.instructionPointer.setDirection(Direction.RIGHT);
+        if (context.pop() == 0) {
+            context.setDirection(Direction.RIGHT);
         } else {
-            context.instructionPointer.setDirection(Direction.LEFT);
+            context.setDirection(Direction.LEFT);
         }
         return true;
     }

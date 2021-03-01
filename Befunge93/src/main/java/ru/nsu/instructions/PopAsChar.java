@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 public class PopAsChar implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        System.out.printf("%c", context.stack.pop());
+        System.out.printf("%c", context.pop());
         return true;
     }
 }

@@ -6,15 +6,11 @@ import java.util.NoSuchElementException;
 
 public class GreaterThan implements Instruction {
     @Override
-    public boolean exec(Context context, Character instruction) throws NoSuchElementException{
-        try {
-            if (context.stack.pop() < context.stack.pop()) {
-                context.stack.push(1);
-            } else {
-                context.stack.push(0);
-            }
-        } catch (NoSuchElementException e) {
-            return false;
+    public boolean exec(Context context, Character instruction) throws NoSuchElementException {
+        if (context.pop() < context.pop()) {
+            context.push(1);
+        } else {
+            context.push(0);
         }
         return true;
     }

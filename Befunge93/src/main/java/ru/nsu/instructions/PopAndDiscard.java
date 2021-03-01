@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 public class PopAndDiscard implements Instruction{
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        context.stack.pop();
+        context.pop();
         return true;
     }
 }

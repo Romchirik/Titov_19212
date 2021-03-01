@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 public class PushNumber implements Instruction{
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        context.stack.push(instruction.hashCode() - 48);
+        context.push(instruction.hashCode() - 48);
         return true;
     }
 }

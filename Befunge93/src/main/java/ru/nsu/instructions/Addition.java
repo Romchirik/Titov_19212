@@ -8,7 +8,7 @@ public class Addition implements Instruction {
 
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException{
-        context.stack.push(context.stack.pop() + context.stack.pop());
+        context.push(context.pop() + context.pop());
         return true;
     }
 }

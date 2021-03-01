@@ -8,7 +8,7 @@ public class DuplicateTop implements Instruction{
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException{
         try {
-            context.stack.push(context.stack.getFirst());
+            context.push(context.getStackTop());
         } catch (NoSuchElementException e){
             return false;
         }

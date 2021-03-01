@@ -11,8 +11,8 @@ public class Division implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException{
         try {
-            Integer a = context.stack.pop();
-            context.stack.push(context.stack.pop() / a);
+            Integer a = context.pop();
+            context.push(context.pop() / a);
         } catch (NoSuchElementException e) {
             return false;
         }
