@@ -7,7 +7,10 @@ import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
-
+/**
+ * Execution context of interpreter, contains instruction pointer, playfield and stack, including API for operating
+ * with them.
+ */
 public class Context {
 
     private static final Logger logger = Logger.getLogger(Context.class);
@@ -21,6 +24,11 @@ public class Context {
     private Context() {
     }
 
+    /**
+     * Constructs execution context and loads playfield (code) from input file
+     * @param playfieldPath path of executing .bfg file
+     * @throws IOException thrown if error occurs while operating with input file
+     */
     public Context(String playfieldPath) throws IOException {
         logger.debug("Initializing execution context...");
         stack = new ArrayDeque<>();
@@ -66,5 +74,9 @@ public class Context {
 
     public Integer getStackTop() {
         return stack.getFirst();
+    }
+
+    public String instructionPointerToStr() {
+        return instructionPointer.toString();
     }
 }

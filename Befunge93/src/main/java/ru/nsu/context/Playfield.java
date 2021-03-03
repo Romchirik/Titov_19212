@@ -1,7 +1,5 @@
 package ru.nsu.context;
 
-
-//TODO сделать поле подобное тору
 public class Playfield {
     static final int PLAYFIELD_WIDTH = 80;
     static final int PLAYFIELD_HEIGHT = 25;
@@ -13,19 +11,19 @@ public class Playfield {
     Character[][] field = new Character[PLAYFIELD_HEIGHT][PLAYFIELD_WIDTH];
 
     public Playfield() {
-        for (Character[] characters : field) {
-            for (Character character : characters) {
-                character = ' ';
+        for(int i = 0; i < PLAYFIELD_HEIGHT; i++){
+            for(int j = 0; j < PLAYFIELD_WIDTH; j++){
+                field[i][j] = ' ';
             }
         }
     }
 
-    public void setInstruction(final int row, final int column, Character symbol) {
-        field[column][row] = symbol;
+    public void setInstruction(int row, int column, Character symbol) {
+        field[row % PLAYFIELD_HEIGHT][column % PLAYFIELD_WIDTH] = symbol;
     }
 
-    public Character getInstruction(final int row, final int column) {
-        return field[row][column];
+    public Character getInstruction(int row, int column) {
+        return field[row % PLAYFIELD_HEIGHT][column % PLAYFIELD_WIDTH];
     }
 
     void addSymbol(Character symbol) {

@@ -27,7 +27,6 @@ public class Interpreter {
         }
 
 
-
         while (true) {
             Character instructionCharValue = context.getCurrentInstruction();
             Instruction currentInstruction = instructions.get(instructionCharValue);
@@ -39,21 +38,20 @@ public class Interpreter {
             }
 
             try {
-                logger.debug(String.format(
-                        "Executing %s, Row: %d Column: %d",
+                logger.trace(String.format(
+                        "Executing %s, %s",
                         currentInstruction.toString(),
-                        context.instructionPointer.getRow(),
-                        context.instructionPointer.getColumn()
+                        context.instructionPointerToStr()
                 ));
-
-                if (!currentInstruction.exec(context, instructionCharValue)) {
-                    logger.info("Terminating...");
-                    break;
+                if (currentInstruction != null) {
+                    if (!currentInstruction.exec(context, instructionCharValue)) {
+                        logger.info("Terminating...");
+                        break;
+                    }
+                } else {
+                    logger.error("Further execution is impossible, terminating ...");
                 }
-                //TODO сделать проверку вместо отлавливания
-            } catch (NullPointerException e) {
-                logger.error("No such instruction, further execution is impossible, terminating...");
-                return;
+
             } catch (NoSuchElementException e) {
                 logger.error("Trying to pop a value from empty stack, further execution is impossible, terminating... ");
                 return;

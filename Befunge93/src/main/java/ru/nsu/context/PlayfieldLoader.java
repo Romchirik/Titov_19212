@@ -10,15 +10,14 @@ import java.util.stream.Stream;
 public class PlayfieldLoader {
     static Logger logger = Logger.getLogger(PlayfieldLoader.class);
 
-    //Todo добавить форматные строки
     static public Playfield loadField(String filename) throws IOException {
-        logger.debug("Trying to load playfield from " + filename);
+        logger.debug(String.format("Trying to load playfield from %s", filename));
         Playfield tmp_playfield = new Playfield();
 
         try (Stream<String> lines = Files.lines(Path.of(filename))) {
             lines.forEach((line) -> {
                 line.chars().forEach((instruction) -> {
-                    logger.debug("Loaded symbol: " + (char) instruction);
+                    logger.debug(String.format("Loaded symbol: %c", instruction));
                     tmp_playfield.addSymbol((char) instruction);
                 });
                 tmp_playfield.addSymbol('\n');
