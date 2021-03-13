@@ -6,7 +6,6 @@ import java.lang.Class;
 import java.util.HashMap;
 import java.util.Properties;
 
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.nsu.exceptons.FactoryConfigurationException;
@@ -31,6 +30,7 @@ public class Factory {
     public Factory() throws FactoryConfigurationException {
         Properties props = new Properties();
         logger.debug("Loading factory properties...");
+
         try (InputStream input = Factory.class.getResourceAsStream("/factoryConfig.properties")) {
             props.load(input);
             props.forEach((key, value) -> {
@@ -49,7 +49,6 @@ public class Factory {
         Class<?> loadedClass = Class.forName(instructionClassMatching.get(instructionName));
         availableInstructions.put(instructionName, loadedClass);
     }
-
 
     /**
      *  Creates new instruction using instructionClassMatching.

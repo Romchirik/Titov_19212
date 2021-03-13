@@ -17,6 +17,7 @@ public class Interpreter {
 
 
     public static void main(String[] args) {
+        System.out.println(-30 % 20);
         if (args.length == 0) {
             logger.warn("No input file to execute");
             return;

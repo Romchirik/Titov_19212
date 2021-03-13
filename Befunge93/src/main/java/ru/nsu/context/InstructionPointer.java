@@ -4,7 +4,7 @@ package ru.nsu.context;
 public class InstructionPointer {
     private int row = 0;
     private int column = 0;
-    private Direction direction = Direction.UP;
+    private Direction direction = Direction.RIGHT;
 
     public InstructionPointer() {
 
@@ -23,7 +23,7 @@ public class InstructionPointer {
         column = val;
     }
 
-    public void setPair(int val1, int val2) {
+    public void setRowColumn(int val1, int val2) {
         row = val1;
         column = val2;
     }
@@ -56,6 +56,10 @@ public class InstructionPointer {
                 break;
             default:
         }
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override

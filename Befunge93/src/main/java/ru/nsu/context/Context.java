@@ -1,6 +1,8 @@
 package ru.nsu.context;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.NoSuchElementException;
@@ -17,15 +19,24 @@ public class Context {
 
     private boolean skipNextInstruction = false;
 
+    private PrintStream output = System.out;
+    private InputStream input = System.in;
     private Deque<Integer> stack;
     private InstructionPointer instructionPointer;
     private Playfield playfield;
 
-    private Context() {
+    /**
+     * Constructs execution context with empty playfield (ONLY FOR TESTING)
+     */
+    public Context() {
+        stack = new ArrayDeque<>();
+        instructionPointer = new InstructionPointer();
+        playfield = new Playfield();
     }
 
     /**
      * Constructs execution context and loads playfield (code) from input file
+     *
      * @param playfieldPath path of executing .bfg file
      * @throws IOException thrown if error occurs while operating with input file
      */
@@ -34,6 +45,14 @@ public class Context {
         stack = new ArrayDeque<>();
         instructionPointer = new InstructionPointer();
         playfield = PlayfieldLoader.loadField(playfieldPath);
+    }
+
+    public void setOutputStream(PrintStream output) {
+        this.output = output;
+    }
+
+    public void setInputStream(InputStream input) {
+        this.input = input;
     }
 
     public void setDirection(Direction direction) {
@@ -52,12 +71,32 @@ public class Context {
         }
     }
 
+    public InputStream getInput() {
+        return input;
+    }
+
+    public PrintStream getOutput() {
+        return output;
+    }
+
+    public Direction getDirection() {
+        return instructionPointer.getDirection();
+    }
+
     public Character getCurrentInstruction() {
         return playfield.getInstruction(instructionPointer.getRow(), instructionPointer.getColumn());
     }
 
     public Character getInstruction(Integer row, Integer column) {
         return playfield.getInstruction(row, column);
+    }
+
+    public Integer getRow() {
+        return instructionPointer.getRow();
+    }
+
+    public Integer getColumn() {
+        return instructionPointer.getColumn();
     }
 
     public void setInstruction(Integer row, Integer column, Character instruction) {
