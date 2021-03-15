@@ -27,12 +27,6 @@ public class OperationsTest {
         Assertions.assertEquals(context.pop(), 300);
     }
 
-    //TODO доделать тест
-    @Test
-    public void askIntAndPushTest() {
-
-    }
-
     @Test
     public void divisionTest() {
         Instruction division = new Division();
@@ -54,10 +48,18 @@ public class OperationsTest {
         Assertions.assertEquals(context.pop(), context.pop());
     }
 
-    //TODO доделать тест
     @Test
-    public void GetTest() {
+    public void putTest() {
+        Instruction put = new Put();
+        Integer row = 10;
+        Integer column = 20;
 
+        context.push((int) '&');
+        context.push(column);
+        context.push(row);
+        put.exec(context, 'p');
+
+        Assertions.assertEquals(context.getInstruction(row, column), '&');
     }
 
     @Test
@@ -151,18 +153,6 @@ public class OperationsTest {
         Assertions.assertEquals(context.getDirection(), Direction.LEFT);
     }
 
-    //TODO доделать тест
-    @Test
-    public void popAsCharTest() {
-
-    }
-
-    //TODO доделать тест
-    @Test
-    public void popAsIntegerTest() {
-
-    }
-
     @Test
     public void pushNumberTest() {
         Instruction pushNumber = new PushNumber();
@@ -190,10 +180,18 @@ public class OperationsTest {
         Assertions.assertEquals(context.pop(), 0);
     }
 
-    //TODO доделать тест
     @Test
-    public void putTest() {
+    public void getTest() {
+        Integer row = 10;
+        Integer column = 20;
+        Instruction get = new Get();
 
+        context.setInstruction(row, column, 'p');
+        context.push(column);
+        context.push(row);
+
+        get.exec(context, 'g');
+        Assertions.assertEquals(context.pop(), 'p');
     }
 
     @Test

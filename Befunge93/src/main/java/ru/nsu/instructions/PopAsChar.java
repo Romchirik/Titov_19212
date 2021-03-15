@@ -20,8 +20,7 @@ import java.util.NoSuchElementException;
 public class PopAsChar implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        //TODO переделать на настраиваемые потоки
-        System.out.printf("%c", context.pop());
+        context.getOutput().printf("%c", context.pop());
         return true;
     }
 }

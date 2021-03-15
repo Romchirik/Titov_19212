@@ -8,9 +8,10 @@ import java.util.NoSuchElementException;
 public class Put implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        context.setInstruction(context.pop(),
-                context.pop(),
-                (char) context.pop().intValue());
+        Integer row = context.pop();
+        Integer column = context.pop();
+
+        context.setInstruction(row, column, (char) context.pop().intValue());
         return true;
     }
 }

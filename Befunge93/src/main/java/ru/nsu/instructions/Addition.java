@@ -1,5 +1,6 @@
 package ru.nsu.instructions;
 
+import org.apache.log4j.Logger;
 import ru.nsu.context.Context;
 
 import java.util.NoSuchElementException;
@@ -19,9 +20,15 @@ import java.util.NoSuchElementException;
  */
 public class Addition implements Instruction {
 
+    static final Logger logger = Logger.getLogger(Instruction.class);
+
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
-        context.push(context.pop() + context.pop());
+        Integer a = context.pop();
+        Integer b = context.pop();
+
+        logger.trace(String.format("%d + %d = %d\n", a, b, a + b));
+        context.push(a + b);
         return true;
     }
 }
