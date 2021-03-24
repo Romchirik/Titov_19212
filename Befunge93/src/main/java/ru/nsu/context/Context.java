@@ -118,4 +118,15 @@ public class Context {
     public String instructionPointerToStr() {
         return instructionPointer.toString();
     }
+
+    @Override
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+
+        stack.forEach((item) -> {
+            buffer.append(item.toString());
+            buffer.append(" ");
+        });
+        return  buffer.toString();
+    }
 }

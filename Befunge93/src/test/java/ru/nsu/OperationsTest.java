@@ -1,15 +1,20 @@
 package ru.nsu;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.nsu.context.Context;
 import ru.nsu.context.Direction;
 import ru.nsu.instructions.*;
 
+import org.apache.log4j.Logger;
+
+
 public class OperationsTest {
 
     static private Context context;
+    static private final Logger logger = Logger.getLogger(OperationsTest.class);
 
     @BeforeAll
     static void contextInit() {
@@ -24,7 +29,7 @@ public class OperationsTest {
         context.push(200);
         addition.exec(context, '+');
 
-        Assertions.assertEquals(context.pop(), 300);
+        assertEquals(context.pop(), 300);
     }
 
     @Test
@@ -35,7 +40,7 @@ public class OperationsTest {
         context.push(100);
         division.exec(context, '-');
 
-        Assertions.assertEquals(context.pop(), 2);
+        assertEquals(context.pop(), 2);
     }
 
     @Test
@@ -45,7 +50,7 @@ public class OperationsTest {
         context.push(100);
         duplicate.exec(context, ':');
 
-        Assertions.assertEquals(context.pop(), context.pop());
+        assertEquals(context.pop(), context.pop());
     }
 
     @Test
@@ -59,7 +64,7 @@ public class OperationsTest {
         context.push(row);
         put.exec(context, 'p');
 
-        Assertions.assertEquals(context.getInstruction(row, column), '&');
+        assertEquals(context.getInstruction(row, column), '&');
     }
 
     @Test
@@ -69,17 +74,17 @@ public class OperationsTest {
         context.push(100);
         context.push(200);
         greaterThan.exec(context, '`');
-        Assertions.assertEquals(context.pop(), 0);
+        assertEquals(context.pop(), 0);
 
         context.push(200);
         context.push(100);
         greaterThan.exec(context, '`');
-        Assertions.assertEquals(context.pop(), 1);
+        assertEquals(context.pop(), 1);
 
         context.push(100);
         context.push(100);
         greaterThan.exec(context, '`');
-        Assertions.assertEquals(context.pop(), 0);
+        assertEquals(context.pop(), 0);
 
     }
 
@@ -89,11 +94,11 @@ public class OperationsTest {
 
         context.push(0);
         logicalNot.exec(context, '!');
-        Assertions.assertEquals(context.pop(), 1);
+        assertEquals(context.pop(), 1);
 
         context.push(1);
         logicalNot.exec(context, '!');
-        Assertions.assertEquals(context.pop(), 0);
+        assertEquals(context.pop(), 0);
     }
 
     @Test
@@ -104,7 +109,7 @@ public class OperationsTest {
         context.push(100);
         modulo.exec(context, '%');
 
-        Assertions.assertEquals(context.pop(), 0);
+        assertEquals(context.pop(), 0);
     }
 
     @Test
@@ -114,13 +119,13 @@ public class OperationsTest {
         context.push(200);
         context.push(100);
         modulo.exec(context, '*');
-        Assertions.assertEquals(context.pop(), 0);
+        assertEquals(context.pop(), 0);
     }
 
     @Test
     public void popAndDiscardTest() {
         context.push(100);
-        Assertions.assertDoesNotThrow(() -> {
+        assertDoesNotThrow(() -> {
             context.pop();
         });
     }
@@ -132,11 +137,11 @@ public class OperationsTest {
 
         context.push(0);
         vertical.exec(context, '|');
-        Assertions.assertEquals(context.getDirection(), Direction.DOWN);
+        assertEquals(context.getDirection(), Direction.DOWN);
 
         context.push(1);
         vertical.exec(context, '|');
-        Assertions.assertEquals(context.getDirection(), Direction.UP);
+        assertEquals(context.getDirection(), Direction.UP);
     }
 
     @Test
@@ -146,11 +151,11 @@ public class OperationsTest {
 
         context.push(0);
         vertical.exec(context, '_');
-        Assertions.assertEquals(context.getDirection(), Direction.RIGHT);
+        assertEquals(context.getDirection(), Direction.RIGHT);
 
         context.push(1);
         vertical.exec(context, '_');
-        Assertions.assertEquals(context.getDirection(), Direction.LEFT);
+        assertEquals(context.getDirection(), Direction.LEFT);
     }
 
     @Test
@@ -168,16 +173,16 @@ public class OperationsTest {
         pushNumber.exec(context, '8');
         pushNumber.exec(context, '9');
 
-        Assertions.assertEquals(context.pop(), 9);
-        Assertions.assertEquals(context.pop(), 8);
-        Assertions.assertEquals(context.pop(), 7);
-        Assertions.assertEquals(context.pop(), 6);
-        Assertions.assertEquals(context.pop(), 5);
-        Assertions.assertEquals(context.pop(), 4);
-        Assertions.assertEquals(context.pop(), 3);
-        Assertions.assertEquals(context.pop(), 2);
-        Assertions.assertEquals(context.pop(), 1);
-        Assertions.assertEquals(context.pop(), 0);
+        assertEquals(context.pop(), 9);
+        assertEquals(context.pop(), 8);
+        assertEquals(context.pop(), 7);
+        assertEquals(context.pop(), 6);
+        assertEquals(context.pop(), 5);
+        assertEquals(context.pop(), 4);
+        assertEquals(context.pop(), 3);
+        assertEquals(context.pop(), 2);
+        assertEquals(context.pop(), 1);
+        assertEquals(context.pop(), 0);
     }
 
     @Test
@@ -191,7 +196,7 @@ public class OperationsTest {
         context.push(row);
 
         get.exec(context, 'g');
-        Assertions.assertEquals(context.pop(), 'p');
+        assertEquals(context.pop(), 'p');
     }
 
     @Test
@@ -200,36 +205,36 @@ public class OperationsTest {
         skip.exec(context, '#');
         context.step();
 
-        Assertions.assertEquals(context.getColumn(), 2);
-        Assertions.assertEquals(context.getRow(), 0);
+        assertEquals(context.getColumn(), 2);
+        assertEquals(context.getRow(), 0);
     }
 
     @Test
     public void startMovingDownTest() {
         Instruction direction = new StartMovingDown();
         direction.exec(context, '>');
-        Assertions.assertEquals(context.getDirection(), Direction.DOWN);
+        assertEquals(context.getDirection(), Direction.DOWN);
     }
 
     @Test
     public void startMovingLeftTest() {
         Instruction direction = new StartMovingLeft();
         direction.exec(context, '>');
-        Assertions.assertEquals(context.getDirection(), Direction.LEFT);
+        assertEquals(context.getDirection(), Direction.LEFT);
     }
 
     @Test
     public void startMovingRightTest() {
         Instruction direction = new StartMovingRight();
         direction.exec(context, '>');
-        Assertions.assertEquals(context.getDirection(), Direction.RIGHT);
+        assertEquals(context.getDirection(), Direction.RIGHT);
     }
 
     @Test
     public void startMovingUpTest() {
         Instruction direction = new StartMovingUp();
         direction.exec(context, '>');
-        Assertions.assertEquals(context.getDirection(), Direction.UP);
+        assertEquals(context.getDirection(), Direction.UP);
     }
 
     @Test
@@ -240,7 +245,7 @@ public class OperationsTest {
         context.push(200);
         subtraction.exec(context, '-');
 
-        Assertions.assertEquals(context.pop(), -100);
+        assertEquals(context.pop(), -100);
     }
 
     @Test
@@ -251,7 +256,30 @@ public class OperationsTest {
         context.push(200);
         swapStackTop.exec(context, ' ');
 
-        Assertions.assertEquals(context.pop(), 100);
-        Assertions.assertEquals(context.pop(), 200);
+        assertEquals(context.pop(), 100);
+        assertEquals(context.pop(), 200);
+    }
+
+    @Test
+    public void putGetMultipleTest() {
+        Integer row = 10;
+        Integer column = 20;
+
+        Instruction put = new Put();
+        Instruction get = new Get();
+
+        context.setInstruction(row, column, '!');
+
+        context.push(column);
+        context.push(row);
+        context.push(column);
+        context.push(row);
+        get.exec(context, 'g');
+
+
+        System.out.println(context.toString());
+        put.exec(context, 'p');
+
+        assertEquals(context.pop(), '!');
     }
 }

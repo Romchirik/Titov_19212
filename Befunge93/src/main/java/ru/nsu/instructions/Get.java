@@ -2,6 +2,7 @@ package ru.nsu.instructions;
 
 import ru.nsu.context.Context;
 
+import javax.sound.midi.SysexMessage;
 import java.util.NoSuchElementException;
 
 public class Get implements Instruction {

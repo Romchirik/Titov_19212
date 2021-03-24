@@ -12,6 +12,7 @@ public class AskCharPush implements Instruction {
         Scanner charInput = new Scanner(context.getInput());
         Integer inputChar = (int) charInput.next().charAt(0);
         context.push(inputChar);
+
         return true;
     }
 }

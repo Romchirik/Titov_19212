@@ -8,6 +8,7 @@ import ru.nsu.instructions.Instruction;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 
 public class Interpreter {
@@ -17,7 +18,8 @@ public class Interpreter {
     private static final HashMap<Character, Instruction> instructions = new HashMap<>();
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+         Scanner reader = new Scanner();
         if (args.length == 0) {
             logger.warn("No input file to execute");
             return;
@@ -59,7 +61,10 @@ public class Interpreter {
             }
 
             context.step();
+            logger.trace(context.toString());
+            if(logger.isDebugEnabled()){
 
+            }
         }
     }
 
