@@ -1,0 +1,36 @@
+ru/nsu/titov/model/entities/ghosts/Pinky.java
+ ru.nsu.titov.model.entities.ghosts.Pinky
+ru/nsu/titov/model/entities/fixed/Wall.java
+ ru.nsu.titov.model.entities.fixed.Wall
+ru/nsu/titov/model/entities/GameObject.java
+ ru.nsu.titov.model.entities.GameObject
+ ru.nsu.titov.model.entities.GameObject$1
+ru/nsu/titov/model/entities/ghosts/Ghost.java
+ ru.nsu.titov.model.entities.ghosts.Ghost
+ ru.nsu.titov.model.entities.ghosts.Ghost$1
+ru/nsu/titov/model/entities/ghosts/Clyde.java
+ ru.nsu.titov.model.entities.ghosts.Clyde
+ru/nsu/titov/model/Model.java
+ ru.nsu.titov.model.Model
+ru/nsu/titov/model/entities/pacman/Pacman.java
+ ru.nsu.titov.model.entities.pacman.Pacman
+ru/nsu/titov/model/entities/Direction.java
+ ru.nsu.titov.model.entities.Direction
+ru/nsu/titov/model/entities/ghosts/Blinky.java
+ ru.nsu.titov.model.entities.ghosts.Blinky
+ru/nsu/titov/controller/KeyboardHandler.java
+ ru.nsu.titov.controller.KeyboardHandler
+ru/nsu/titov/model/entities/HitBox.java
+ ru.nsu.titov.model.entities.HitBox
+ru/nsu/titov/model/entities/ghosts/Inky.java
+ ru.nsu.titov.model.entities.ghosts.Inky
+ru/nsu/titov/model/entities/ghosts/GhostStates.java
+ ru.nsu.titov.model.entities.ghosts.GhostStates
+ru/nsu/titov/controller/Controller.java
+ ru.nsu.titov.controller.Controller
+ru/nsu/titov/Pacman.java
+ ru.nsu.titov.Pacman
+ru/nsu/titov/view/PlayfiledPanel.java
+ ru.nsu.titov.view.PlayfiledPanel
+ru/nsu/titov/view/Window.java
+ ru.nsu.titov.view.Window
