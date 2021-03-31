@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Test;
-import ru.nsu.titov.model.GameObject;
 import ru.nsu.titov.model.Pacman;
 
 import org.junit.jupiter.api.Assertions;

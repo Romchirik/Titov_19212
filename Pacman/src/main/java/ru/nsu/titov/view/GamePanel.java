@@ -33,6 +33,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         modelController.tick();
         repaint();
+        Toolkit.getDefaultToolkit().sync();
 
     }
 }

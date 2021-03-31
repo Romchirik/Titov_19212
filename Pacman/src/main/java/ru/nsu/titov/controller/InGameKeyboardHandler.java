@@ -19,6 +19,8 @@ public class InGameKeyboardHandler extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
+
+        //this bullshit doesn't work with switch
         if(code == KeyEvent.VK_UP){
             associatedModelController.setPacmanDirection(Direction.UP);
         } else if (code == KeyEvent.VK_DOWN){
