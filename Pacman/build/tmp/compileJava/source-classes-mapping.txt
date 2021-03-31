@@ -1,36 +1,23 @@
-ru/nsu/titov/model/entities/ghosts/Pinky.java
- ru.nsu.titov.model.entities.ghosts.Pinky
-ru/nsu/titov/model/entities/fixed/Wall.java
- ru.nsu.titov.model.entities.fixed.Wall
-ru/nsu/titov/model/entities/GameObject.java
- ru.nsu.titov.model.entities.GameObject
- ru.nsu.titov.model.entities.GameObject$1
-ru/nsu/titov/model/entities/ghosts/Ghost.java
- ru.nsu.titov.model.entities.ghosts.Ghost
- ru.nsu.titov.model.entities.ghosts.Ghost$1
-ru/nsu/titov/model/entities/ghosts/Clyde.java
- ru.nsu.titov.model.entities.ghosts.Clyde
-ru/nsu/titov/model/Model.java
- ru.nsu.titov.model.Model
-ru/nsu/titov/model/entities/pacman/Pacman.java
- ru.nsu.titov.model.entities.pacman.Pacman
-ru/nsu/titov/model/entities/Direction.java
- ru.nsu.titov.model.entities.Direction
-ru/nsu/titov/model/entities/ghosts/Blinky.java
- ru.nsu.titov.model.entities.ghosts.Blinky
-ru/nsu/titov/controller/KeyboardHandler.java
- ru.nsu.titov.controller.KeyboardHandler
-ru/nsu/titov/model/entities/HitBox.java
- ru.nsu.titov.model.entities.HitBox
-ru/nsu/titov/model/entities/ghosts/Inky.java
- ru.nsu.titov.model.entities.ghosts.Inky
-ru/nsu/titov/model/entities/ghosts/GhostStates.java
- ru.nsu.titov.model.entities.ghosts.GhostStates
-ru/nsu/titov/controller/Controller.java
- ru.nsu.titov.controller.Controller
-ru/nsu/titov/Pacman.java
- ru.nsu.titov.Pacman
-ru/nsu/titov/view/PlayfiledPanel.java
- ru.nsu.titov.view.PlayfiledPanel
-ru/nsu/titov/view/Window.java
- ru.nsu.titov.view.Window
+ru/nsu/titov/controller/PacmanMain.java
+ ru.nsu.titov.controller.PacmanMain
+ru/nsu/titov/view/GamePanel.java
+ ru.nsu.titov.view.GamePanel
+ru/nsu/titov/model/ModelController.java
+ ru.nsu.titov.model.ModelController
+ru/nsu/titov/controller/InGameKeyboardHandler.java
+ ru.nsu.titov.controller.InGameKeyboardHandler
+ru/nsu/titov/view/Drawable.java
+ ru.nsu.titov.view.Drawable
+ru/nsu/titov/model/GameObject.java
+ ru.nsu.titov.model.GameObject
+ru/nsu/titov/view/MainWindow.java
+ ru.nsu.titov.view.MainWindow
+ru/nsu/titov/model/Pacman.java
+ ru.nsu.titov.model.Pacman
+ ru.nsu.titov.model.Pacman$1
+ru/nsu/titov/model/ObjectId.java
+ ru.nsu.titov.model.ObjectId
+ru/nsu/titov/model/Direction.java
+ ru.nsu.titov.model.Direction
+ru/nsu/titov/model/Ghost.java
+ ru.nsu.titov.model.Ghost
