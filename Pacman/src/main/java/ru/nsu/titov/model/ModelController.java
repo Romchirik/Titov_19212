@@ -1,54 +1,43 @@
 package ru.nsu.titov.model;
 
+import ru.nsu.titov.model.map.Map;
+import ru.nsu.titov.model.map.MapLoader;
+import ru.nsu.titov.model.map.Wall;
+import ru.nsu.titov.model.pacman.Pacman;
+
+import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import static ru.nsu.titov.model.GameObject.checkCollision;
+public class ModelController {
+    Map map;
+    ArrayList<GameObject> ghosts;
+    Pacman pacman;
 
-public final class ModelController {
+    int currentScore = 0;
 
-    boolean gameOver = false;
-    int pacmanLives;
-    private Pacman pacman;
-    private GameObject[][] map;
-
-    private ArrayList<GameObject> gameObjects = new ArrayList<>();
-
-
-    public boolean tick() {
-        gameObjects.forEach(object -> object.tick(this));
-
-        gameObjects.forEach(object -> {
-            if (checkCollision(object, pacman)) {
-                object.onCollide(pacman);
-            }
-        });
-        return true;
-    }
-
-    public void initSession() {
-        pacman = new Pacman(0, 0, 32, 32);
+    public ModelController() throws IOException {
+        map = MapLoader.loadMap();
+        pacman = new Pacman(2, 2);
         pacman.setVelocity(1);
-        gameObjects.add(new Wall(200, 200, 32, 32));
-        gameObjects.add(pacman);
+    }
+
+    public void tick() {
+        int pacNextX = pacman.getNextLogicalX();
+        int pacNextY = pacman.getNextLogicalY();
 
 
     }
 
-    public void finishSession() {
-        gameObjects.clear();
+    public void paint(Graphics g) {
+        map.getMap().forEach(object -> object.paint(g));
+//        ghosts.forEach(object -> object.paint(g));
+
+        pacman.paint(g);
     }
 
-    public ArrayList<GameObject> getGameObjects() {
-        return gameObjects;
+    public void setPacmanDirection(Direction direction){
+        pacman.setDirection(direction);
     }
-
-    public void setPacmanDirection(Direction dir) {
-        pacman.setDirection(dir);
-    }
-
-    GameObject getMapObjectAt(int x, int y){
-        return map[y][x];
-    }
-
 
 }

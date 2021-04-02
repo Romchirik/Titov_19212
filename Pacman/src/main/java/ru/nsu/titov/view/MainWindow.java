@@ -1,20 +1,25 @@
 package ru.nsu.titov.view;
 
-import ru.nsu.titov.model.ModelController;
-
 import javax.swing.*;
 import java.awt.*;
 
 
-public final class MainWindow extends JFrame{
+public final class MainWindow extends JFrame {
 
-    GamePanel a = new GamePanel();
-    public MainWindow() {
-        setSize(new Dimension(800, 600));
+    public MainWindow(boolean syncOn) {
+        GamePanel a = new GamePanel(syncOn);
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            //TODO убрать вывод стектрейса
+            e.printStackTrace();
+        }
+
+        setSize(new Dimension(1080, 1080));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Pacman");
-        setResizable(false);
         this.add(a);
+        setVisible(true);
     }
 }
 

@@ -1,26 +1,41 @@
-ru/nsu/titov/controller/PacmanMain.java
- ru.nsu.titov.controller.PacmanMain
-ru/nsu/titov/view/Drawable.java
- ru.nsu.titov.view.Drawable
+ru/nsu/titov/view/MenuWindow.java
+ ru.nsu.titov.view.MenuWindow
+ru/nsu/titov/controller/SettingsLoader.java
+ ru.nsu.titov.controller.SettingsLoader
+ru/nsu/titov/view/MainWindow.java
+ ru.nsu.titov.view.MainWindow
 ru/nsu/titov/model/ObjectId.java
  ru.nsu.titov.model.ObjectId
+ru/nsu/titov/view/StatisticsWindow.java
+ ru.nsu.titov.view.StatisticsWindow
+ru/nsu/titov/controller/Settings.java
+ ru.nsu.titov.controller.Settings
+ru/nsu/titov/controller/PacmanStarter.java
+ ru.nsu.titov.controller.PacmanStarter
 ru/nsu/titov/model/Direction.java
  ru.nsu.titov.model.Direction
-ru/nsu/titov/model/Ghost.java
- ru.nsu.titov.model.Ghost
-ru/nsu/titov/model/GameObject.java
- ru.nsu.titov.model.GameObject
-ru/nsu/titov/model/Wall.java
- ru.nsu.titov.model.Wall
- ru.nsu.titov.model.Wall$1
+ru/nsu/titov/model/map/MapLoader.java
+ ru.nsu.titov.model.map.MapLoader
+ru/nsu/titov/model/ghosts/Clyde.java
+ ru.nsu.titov.model.ghosts.Clyde
+ru/nsu/titov/controller/InGameKeyboardListener.java
+ ru.nsu.titov.controller.InGameKeyboardListener
+ru/nsu/titov/model/ghosts/Ghost.java
+ ru.nsu.titov.model.ghosts.Ghost
 ru/nsu/titov/view/GamePanel.java
  ru.nsu.titov.view.GamePanel
 ru/nsu/titov/model/ModelController.java
  ru.nsu.titov.model.ModelController
-ru/nsu/titov/controller/InGameKeyboardHandler.java
- ru.nsu.titov.controller.InGameKeyboardHandler
-ru/nsu/titov/view/MainWindow.java
- ru.nsu.titov.view.MainWindow
-ru/nsu/titov/model/Pacman.java
- ru.nsu.titov.model.Pacman
- ru.nsu.titov.model.Pacman$1
+ru/nsu/titov/model/map/Wall.java
+ ru.nsu.titov.model.map.Wall
+ru/nsu/titov/model/GameObject.java
+ ru.nsu.titov.model.GameObject
+ru/nsu/titov/model/map/Food.java
+ ru.nsu.titov.model.map.Food
+ru/nsu/titov/model/pacman/Pacman.java
+ ru.nsu.titov.model.pacman.Pacman
+ ru.nsu.titov.model.pacman.Pacman$1
+ru/nsu/titov/model/map/Map.java
+ ru.nsu.titov.model.map.Map
+ru/nsu/titov/model/map/Void.java
+ ru.nsu.titov.model.map.Void
