@@ -19,6 +19,7 @@ public class InGameKeyboardListener extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         //this bullshit doesn't work with switch
+        //TODO каким то образом переделать на свитчи
         if(code == KeyEvent.VK_UP){
             associatedModelController.setPacmanDirection(Direction.UP);
         } else if (code == KeyEvent.VK_DOWN){
@@ -28,6 +29,5 @@ public class InGameKeyboardListener extends KeyAdapter {
         } else if (code == KeyEvent.VK_RIGHT){
             associatedModelController.setPacmanDirection(Direction.RIGHT);
         }
-        System.out.println(e.getKeyCode());
     }
 }

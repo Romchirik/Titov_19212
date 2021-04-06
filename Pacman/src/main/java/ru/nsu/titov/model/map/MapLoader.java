@@ -11,7 +11,8 @@ import java.util.stream.Stream;
 
 public class MapLoader {
     public static Map loadMap() throws IOException {
-        Map tmp_map = new Map();
+        Map tmpMap = new Map();
+        ArrayList<GameObject> food = new ArrayList<>();
         ArrayList<GameObject> tmp = new ArrayList<>();
         try (Stream<String> lines = Files.lines(Path.of(Settings.MAP_LOCATION))) {
             lines.forEach(line -> {
@@ -27,15 +28,24 @@ public class MapLoader {
 
 
         }
-        finalizeMap(tmp);
-        tmp_map.map = tmp;
-        return tmp_map;
+        tmpMap.map = tmp;
+        tmpMap.food = food;
+        finalizeMap(tmpMap);
+        return tmpMap;
     }
 
-    private static void finalizeMap(ArrayList<GameObject> tmpMap) {
-        for (int i = 0; i < tmpMap.size(); i++) {
-            tmpMap.get(i).setLogicalX(i % Settings.MAP_LOGICAL_WIDTH);
-            tmpMap.get(i).setLogicalY(i / Settings.MAP_LOGICAL_WIDTH);
+    private static void finalizeMap(Map tmpMap) {
+        for (int i = 0; i < tmpMap.map.size(); i++) {
+            GameObject tmpObject = tmpMap.map.get(i);
+            tmpObject.setX(i % Settings.MAP_LOGICAL_WIDTH);
+            tmpObject.setY(i / Settings.MAP_LOGICAL_WIDTH);
+
+            if (tmpObject instanceof Food) {
+                tmpMap.foodsCount++;
+                tmpMap.food.add(tmpObject);
+                tmpMap.map.set(i, new Void(tmpObject.getX(), tmpObject.getY()));
+
+            }
         }
 
     }

@@ -2,5 +2,5 @@ package ru.nsu.titov.view;
 
 import javax.swing.*;
 
-public class GamePanel extends JPanel {
+public class LeaderboardPanel extends JPanel {
 }

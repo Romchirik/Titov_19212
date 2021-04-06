@@ -1,17 +1,21 @@
 package ru.nsu.titov.model.ghosts;
 
 import ru.nsu.titov.controller.Settings;
+import ru.nsu.titov.model.GameObject;
 import ru.nsu.titov.model.ModelController;
 import ru.nsu.titov.model.ObjectId;
+import ru.nsu.titov.view.MyPainter;
 
 import java.awt.*;
 
-public class Clyde extends Ghost{
+public class Clyde extends Ghost {
+
     public Clyde(int logicalX, int logicalY) {
         super(logicalX, logicalY);
         ID = ObjectId.CLYDE;
     }
-    //допилить тактику
+
+    //TODO допилить тактику
     @Override
     void updateTactic(ModelController model) {
 
@@ -21,10 +25,8 @@ public class Clyde extends Ghost{
     public void tick(ModelController model) {
 
     }
-
     @Override
-    public void paint(Graphics g) {
-        g.setColor(Color.RED);
-        g.fillRect(x, y, Settings.CELL_SIZE, Settings.CELL_SIZE);
+    public void paint(MyPainter painter) {
+
     }
 }

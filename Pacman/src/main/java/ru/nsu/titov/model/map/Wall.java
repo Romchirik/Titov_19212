@@ -4,6 +4,7 @@ import ru.nsu.titov.controller.Settings;
 import ru.nsu.titov.model.GameObject;
 import ru.nsu.titov.model.ModelController;
 import ru.nsu.titov.model.ObjectId;
+import ru.nsu.titov.view.MyPainter;
 
 import java.awt.*;
 
@@ -19,8 +20,12 @@ public class Wall extends GameObject {
     }
 
     @Override
-    public void paint(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect(x, y, Settings.CELL_SIZE, Settings.CELL_SIZE);
+    public void onCollide(GameObject object, ModelController model) {
+
+    }
+
+    @Override
+    public void paint(MyPainter painter) {
+
     }
 }
