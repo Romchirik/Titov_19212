@@ -8,7 +8,7 @@ public enum ObjectId {
     BLINKY,
     WALL,
     FOOD,
-    POWER_PILL,
     VOID,
-    DEFAULT;
+    DEFAULT,
+    ENERGIZER
 }

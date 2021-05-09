@@ -8,14 +8,14 @@ public class FactoryTest {
     static Factory factory;
 
     @BeforeAll
-    static void init(){
+    static void init() {
         Assertions.assertDoesNotThrow(() -> {
             factory = new Factory();
         });
     }
 
     @Test
-    public void instructionsLoadTest(){
+    public void instructionsLoadTest() {
         Assertions.assertNull(factory.createInstruction(';'));
         Assertions.assertDoesNotThrow(() -> {
             factory.createInstruction('+');

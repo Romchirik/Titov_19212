@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
  * </tr>
  * </table>
  */
-public class PopAndDiscard implements Instruction{
+public class PopAndDiscard implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
         context.pop();

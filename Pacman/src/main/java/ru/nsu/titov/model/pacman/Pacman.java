@@ -1,48 +1,82 @@
 package ru.nsu.titov.model.pacman;
 
-import ru.nsu.titov.controller.Settings;
 import ru.nsu.titov.model.Direction;
 import ru.nsu.titov.model.GameObject;
-import ru.nsu.titov.model.ModelController;
+import ru.nsu.titov.model.Model;
 import ru.nsu.titov.model.ObjectId;
-import ru.nsu.titov.view.MyPainter;
-
-import java.awt.*;
 
 public class Pacman extends GameObject {
+
+
+    private int lives = 3;
+    private boolean rageMode = false;
+
+    private final double turnOverlap = 0.80;
+    private Direction nextDir = Direction.UNDEFINED;
+    private int delta = 1;
+
     public Pacman(int logicalX, int logicalY) {
         super(logicalX, logicalY);
         ID = ObjectId.PACMAN;
         direction = Direction.RIGHT;
     }
 
+    public Pacman(int logicalX, int logicalY, int velocity) {
+        super(logicalX, logicalY);
+        ID = ObjectId.PACMAN;
+        direction = Direction.RIGHT;
+        this.velocity = velocity;
+    }
+
 
     @Override
-    public void tick(ModelController model) {
+    public void tick(Model model) {
         switch (direction) {
-            case DOWN -> y += velocity;
-            case UP -> y -= velocity;
-            case LEFT -> x -= velocity;
-            case RIGHT -> x += velocity;
+            case LEFT, UP -> ticksPassed--;
+            case DOWN, RIGHT -> ticksPassed++;
         }
-    }
 
-    public void tickBack(){
-        switch (direction) {
-            case DOWN -> y -= velocity;
-            case UP -> y += velocity;
-            case LEFT -> x += velocity;
-            case RIGHT -> x -= velocity;
+
+        if (!stopFlag) {
+            boolean tmp = false;
+            if (ticksPassed <= -velocity || ticksPassed >= velocity) {
+                tmp = true;
+                ticksPassed = 0;
+            }
+
+            if (tmp) {
+                switch (direction) {
+                    case DOWN -> y += 1;
+                    case UP -> y -= 1;
+                    case LEFT -> x -= 1;
+                    case RIGHT -> x += 1;
+                }
+            }
         }
+
     }
 
     @Override
-    public void onCollide(GameObject object, ModelController model) {
+    public void onCollide(GameObject object, Model model) {
 
     }
 
     @Override
-    public void paint(MyPainter painter) {
+    public void setDirection(Direction direction) {
 
+        if (this.direction != direction) {
+            this.direction = direction;
+            stopFlag = false;
+        }
+
+
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
     }
 }

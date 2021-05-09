@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
  * </tr>
  * </table>
  */
-public class PushNumber implements Instruction{
+public class PushNumber implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
         context.push(instruction.hashCode() - 48);

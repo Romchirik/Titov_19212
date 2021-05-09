@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 /**
  * Terminates program
  */
-public class End implements Instruction{
+public class End implements Instruction {
     @Override
     public boolean exec(Context context, Character instruction) throws NoSuchElementException {
         return false;

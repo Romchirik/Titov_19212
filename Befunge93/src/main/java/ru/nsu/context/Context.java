@@ -1,13 +1,13 @@
 package ru.nsu.context;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.NoSuchElementException;
-
-import org.apache.log4j.Logger;
 
 /**
  * Execution context of interpreter, contains instruction pointer, playfield and stack, including API for operating
@@ -127,6 +127,6 @@ public class Context {
             buffer.append(item.toString());
             buffer.append(" ");
         });
-        return  buffer.toString();
+        return buffer.toString();
     }
 }

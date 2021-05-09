@@ -4,11 +4,9 @@ import ru.nsu.context.Context;
 import ru.nsu.exceptons.FactoryConfigurationException;
 import ru.nsu.instructions.Instruction;
 
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 
 public class Interpreter {
@@ -19,7 +17,6 @@ public class Interpreter {
 
 
     public static void main(String[] args) throws InterruptedException {
-         Scanner reader = new Scanner();
         if (args.length == 0) {
             logger.warn("No input file to execute");
             return;
@@ -62,7 +59,7 @@ public class Interpreter {
 
             context.step();
             logger.trace(context.toString());
-            if(logger.isDebugEnabled()){
+            if (logger.isDebugEnabled()) {
 
             }
         }

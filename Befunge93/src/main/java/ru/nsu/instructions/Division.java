@@ -1,10 +1,9 @@
 package ru.nsu.instructions;
 
+import org.apache.log4j.Logger;
 import ru.nsu.context.Context;
 
 import java.util.NoSuchElementException;
-
-import org.apache.log4j.Logger;
 
 /**
  * Divides 2 integers from stack top. Only integer division allowed

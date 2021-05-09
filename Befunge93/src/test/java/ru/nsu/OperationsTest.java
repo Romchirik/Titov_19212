@@ -1,14 +1,14 @@
 package ru.nsu;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import org.apache.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.nsu.context.Context;
 import ru.nsu.context.Direction;
 import ru.nsu.instructions.*;
 
-import org.apache.log4j.Logger;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class OperationsTest {

@@ -1,32 +1,38 @@
 package ru.nsu.titov.model.ghosts;
 
-import ru.nsu.titov.controller.Settings;
-import ru.nsu.titov.model.GameObject;
-import ru.nsu.titov.model.ModelController;
+import ru.nsu.titov.model.Model;
 import ru.nsu.titov.model.ObjectId;
-import ru.nsu.titov.view.MyPainter;
-
-import java.awt.*;
 
 public class Clyde extends Ghost {
 
     public Clyde(int logicalX, int logicalY) {
         super(logicalX, logicalY);
         ID = ObjectId.CLYDE;
+
+        scatterX = 0;
+        scatterY = 33;
     }
 
-    //TODO допилить тактику
-    @Override
-    void updateTactic(ModelController model) {
+    public Clyde(int logicalX, int logicalY, int velocity) {
+        super(logicalX, logicalY);
+        ID = ObjectId.CLYDE;
+        this.velocity = velocity;
 
+        scatterX = 0;
+        scatterY = 33;
     }
 
     @Override
-    public void tick(ModelController model) {
+    void updateChaseTactic(Model model) {
+        int pacX = model.getPacmanPosition().getX();
+        int pacY = model.getPacmanPosition().getY();
 
-    }
-    @Override
-    public void paint(MyPainter painter) {
+        if (Math.sqrt(getCubedDistance(x, y, pacX, pacY)) < 8) {
+            direction = getPreferredDirection(scatterX, scatterY, model.getGameField());
+        } else {
+            direction = getPreferredDirection(pacX, pacY, model.getGameField());
+        }
+
 
     }
 }

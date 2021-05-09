@@ -3,14 +3,15 @@ package ru.nsu.titov.model;
 import static ru.nsu.titov.model.Direction.UNDEFINED;
 import static ru.nsu.titov.model.ObjectId.DEFAULT;
 
-//TODO переделать все на дискретную логику
-//TODO добавить метод tickBack()
-abstract public class GameObject implements Paintable {
+abstract public class GameObject {
     protected int x;
     protected int y;
 
+    protected int ticksPassed = 0;
     protected int velocity;
 
+    protected boolean stopFlag = false;
+    protected final int uniqueId = UniqueId.getId();
     protected ObjectId ID = DEFAULT;
     protected Direction direction = UNDEFINED;
 
@@ -33,10 +34,14 @@ abstract public class GameObject implements Paintable {
 
     public void setVelocity(int velocity) {
         this.velocity = velocity;
+
     }
 
     public void setDirection(Direction direction) {
-        this.direction = direction;
+        if (this.direction != direction) {
+            this.direction = direction;
+            stopFlag = false;
+        }
     }
 
     public int getX() {
@@ -63,6 +68,10 @@ abstract public class GameObject implements Paintable {
         };
     }
 
+    public int getUniqueId() {
+        return uniqueId;
+    }
+
     public int getNextY() {
         return switch (direction) {
             case UP -> y - 1;
@@ -72,7 +81,15 @@ abstract public class GameObject implements Paintable {
     }
 
     //TODO сделать интерфейс для модели (возможно)
-    public abstract void tick(ModelController model);
+    public abstract void tick(Model model);
 
-    public abstract void onCollide(GameObject object, ModelController model);
+    public abstract void onCollide(GameObject object, Model model);
+
+    public int getVelocity() {
+        return velocity;
+    }
+
+    public int getTicksPassed() {
+        return ticksPassed;
+    }
 }
