@@ -10,5 +10,6 @@ public enum ObjectId {
     FOOD,
     VOID,
     DEFAULT,
-    ENERGIZER
+    ENERGIZER,
+    DOOR
 }

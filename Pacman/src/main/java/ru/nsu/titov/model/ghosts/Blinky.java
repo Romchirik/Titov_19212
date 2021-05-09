@@ -8,10 +8,11 @@ import java.util.List;
 
 public class Blinky extends Ghost {
 
+
     public Blinky(int logicalX, int logicalY) {
         super(logicalX, logicalY);
         ID = ObjectId.BLINKY;
-
+        this.direction = Direction.RIGHT;
         scatterX = 30;
         scatterY = 0;
     }
@@ -20,7 +21,7 @@ public class Blinky extends Ghost {
         super(logicalX, logicalY);
         ID = ObjectId.BLINKY;
         this.velocity = velocity;
-
+        this.direction = Direction.RIGHT;
         scatterX = 30;
         scatterY = 0;
     }

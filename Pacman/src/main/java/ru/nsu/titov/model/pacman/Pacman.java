@@ -36,24 +36,20 @@ public class Pacman extends GameObject {
             case DOWN, RIGHT -> ticksPassed++;
         }
 
-
-        if (!stopFlag) {
-            boolean tmp = false;
-            if (ticksPassed <= -velocity || ticksPassed >= velocity) {
-                tmp = true;
-                ticksPassed = 0;
-            }
-
-            if (tmp) {
-                switch (direction) {
-                    case DOWN -> y += 1;
-                    case UP -> y -= 1;
-                    case LEFT -> x -= 1;
-                    case RIGHT -> x += 1;
-                }
-            }
+        boolean tmp = false;
+        if (ticksPassed <= -velocity || ticksPassed >= velocity) {
+            tmp = true;
+            ticksPassed = 0;
         }
 
+        if (tmp) {
+            switch (direction) {
+                case DOWN -> y += 1;
+                case UP -> y -= 1;
+                case LEFT -> x -= 1;
+                case RIGHT -> x += 1;
+            }
+        }
     }
 
     @Override
@@ -63,13 +59,9 @@ public class Pacman extends GameObject {
 
     @Override
     public void setDirection(Direction direction) {
-
         if (this.direction != direction) {
             this.direction = direction;
-            stopFlag = false;
         }
-
-
     }
 
     public int getLives() {

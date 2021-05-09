@@ -1,5 +1,6 @@
 package ru.nsu.titov.model.ghosts;
 
+import ru.nsu.titov.model.Direction;
 import ru.nsu.titov.model.Model;
 import ru.nsu.titov.model.ObjectId;
 
@@ -8,7 +9,7 @@ public class Inky extends Ghost {
     public Inky(int logicalX, int logicalY) {
         super(logicalX, logicalY);
         ID = ObjectId.INKY;
-
+        this.direction = Direction.LEFT;
         scatterX = 30;
         scatterY = 33;
     }
@@ -17,7 +18,7 @@ public class Inky extends Ghost {
         super(logicalX, logicalY);
         ID = ObjectId.INKY;
         this.velocity = velocity;
-
+        this.direction = Direction.LEFT;
         scatterX = 30;
         scatterY = 33;
     }

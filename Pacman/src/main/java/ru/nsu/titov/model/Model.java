@@ -23,7 +23,7 @@ public class Model {
     private static Model instance = null;
     private static final Logger logger = Logger.getLogger(Model.class);
 
-
+    private Direction pacNextDir = Direction.UNDEFINED;
     private final HashMap<Integer, GameObject> activeObjects = new HashMap<>();
     private GameField gameField;
     private ArrayList<GameObject> ghosts = new ArrayList<>();
@@ -36,6 +36,8 @@ public class Model {
 
 
     public void init() {
+        activeObjects.clear();
+        ghosts.clear();
 
         try {
             gameField = FieldLoader.loadMap(GameSession.getInstance().levelName);
@@ -56,7 +58,7 @@ public class Model {
         ghosts.add(new Clyde(gameField.blinkyStartX, gameField.blinkyStartY, 15));
         pacman.setVelocity(10);
 
-        activeObjects.clear();
+
         gameField.getAll().forEach(e -> activeObjects.put(e.getUniqueId(), e));
         activeObjects.put(pacman.getUniqueId(), pacman);
         ghosts.forEach(e -> activeObjects.put(e.getUniqueId(), e));
@@ -73,7 +75,17 @@ public class Model {
      * 6) check finish
      */
     public boolean tick() {
-        if (gameField.acceptMove(pacman.getNextX(), pacman.getNextY())) {
+
+        if (pacNextDir != Direction.UNDEFINED && pacman.getTicksPassed() == 0) {
+            Direction backup = pacman.getDirection();
+            pacman.setDirection(pacNextDir);
+            if (!gameField.acceptMove(pacman.getX(), pacman.getY(), pacman.getNextX(), pacman.getNextY(), ObjectId.PACMAN)) {
+                pacman.setDirection(backup);
+            }
+            pacNextDir = Direction.UNDEFINED;
+        }
+
+        if (gameField.acceptMove(pacman.getX(), pacman.getY(), pacman.getNextX(), pacman.getNextY(), ObjectId.PACMAN)) {
             pacman.tick(this);
         }
 
@@ -82,7 +94,6 @@ public class Model {
             activeObjects.remove(gameField.getObjectAt(pacman.getX(), pacman.getY()).getUniqueId());
             gameField.setObjectAt(new Void(pacman.getX(), pacman.getY()), pacman.getX(), pacman.getY());
         }
-
         ghosts.forEach(ghost -> {
             if (checkCollision(ghost, pacman)) {
                 ghost.onCollide(pacman, this);
@@ -93,18 +104,17 @@ public class Model {
 
         ghosts.forEach(ghost -> gameField.normalizeCoords(ghost));
         gameField.normalizeCoords(pacman);
-
-        System.out.println(pacman.ticksPassed);
         return (gameField.getFoodsLeft() != 0 && pacman.getLives() >= 0);
     }
 
 
     public void setPacmanDirection(Direction direction) {
-//        Direction backup = pacman.getDirection();
-        pacman.setDirection(direction);
-//        if (!gameField.acceptMove(pacman.getNextX(), pacman.getNextY())) {
-//            pacman.setDirection(backup);
-//        }
+        if (Direction.getOppositeDir(direction) == pacman.getDirection()) {
+            pacman.setDirection(direction);
+            return;
+        }
+        pacNextDir = direction;
+
     }
 
 

@@ -1,5 +1,6 @@
 package ru.nsu.titov.model.ghosts;
 
+import ru.nsu.titov.model.Direction;
 import ru.nsu.titov.model.GameObject;
 import ru.nsu.titov.model.Model;
 import ru.nsu.titov.model.ObjectId;
@@ -9,7 +10,7 @@ public class Pinky extends Ghost {
     public Pinky(int logicalX, int logicalY) {
         super(logicalX, logicalY);
         ID = ObjectId.PINKY;
-
+        this.direction = Direction.RIGHT;
         scatterX = 0;
         scatterY = 0;
     }
@@ -18,6 +19,9 @@ public class Pinky extends Ghost {
         super(logicalX, logicalY);
         ID = ObjectId.PINKY;
         this.velocity = velocity;
+        this.direction = Direction.RIGHT;
+        scatterX = 0;
+        scatterY = 0;
     }
 
     @Override

@@ -9,7 +9,8 @@ import ru.nsu.titov.model.playfield.GameField;
 import java.util.List;
 import java.util.Random;
 
-import static ru.nsu.titov.model.ghosts.GhostState.*;
+import static ru.nsu.titov.model.ghosts.GhostState.CHASE;
+import static ru.nsu.titov.model.ghosts.GhostState.EATEN;
 
 abstract public class Ghost extends GameObject {
     protected int scatterX = 0;
@@ -56,7 +57,7 @@ abstract public class Ghost extends GameObject {
                 case SCATTER -> direction = getPreferredDirection(scatterX, scatterY, model.getGameField());
                 case CHASE -> updateChaseTactic(model);
                 case FRIGHTENED -> {
-                    List<Direction> availableDirs = model.getGameField().getAvailableDirs(x, y);
+                    List<Direction> availableDirs = model.getGameField().getAvailableDirs(x, y, ID);
                     this.direction = availableDirs.get(rand.nextInt(availableDirs.size()));
                 }
                 case EATEN -> {
@@ -68,7 +69,7 @@ abstract public class Ghost extends GameObject {
     }
 
     protected Direction getPreferredDirection(int targetX, int targetY, GameField field) {
-        List<Direction> availableDirs = field.getAvailableDirs(x, y);
+        List<Direction> availableDirs = field.getAvailableDirs(x, y, ID);
 
         int distance = Integer.MAX_VALUE;
         int minDistance = Integer.MAX_VALUE;

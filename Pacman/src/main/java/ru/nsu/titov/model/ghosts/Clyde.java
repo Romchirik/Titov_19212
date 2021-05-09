@@ -1,5 +1,6 @@
 package ru.nsu.titov.model.ghosts;
 
+import ru.nsu.titov.model.Direction;
 import ru.nsu.titov.model.Model;
 import ru.nsu.titov.model.ObjectId;
 
@@ -8,6 +9,7 @@ public class Clyde extends Ghost {
     public Clyde(int logicalX, int logicalY) {
         super(logicalX, logicalY);
         ID = ObjectId.CLYDE;
+        this.direction = Direction.LEFT;
 
         scatterX = 0;
         scatterY = 33;
@@ -17,7 +19,7 @@ public class Clyde extends Ghost {
         super(logicalX, logicalY);
         ID = ObjectId.CLYDE;
         this.velocity = velocity;
-
+        this.direction = Direction.LEFT;
         scatterX = 0;
         scatterY = 33;
     }
