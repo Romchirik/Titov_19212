@@ -1,4 +1,10 @@
-nsu/titov/Main.java
- nsu.titov.Main
+nsu/titov/Handshake.java
+ nsu.titov.Handshake
+nsu/titov/Server.java
+ nsu.titov.Server
+nsu/titov/NetworkHandler.java
+ nsu.titov.NetworkHandler
+nsu/titov/FilesystemHandler.java
+ nsu.titov.FilesystemHandler
 nsu/titov/Client.java
  nsu.titov.Client
