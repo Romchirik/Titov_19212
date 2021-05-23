@@ -52,5 +52,11 @@ public class PacmanPainter {
         canvas.fillArc(x, y,
                 UISettings.CELL_SIZE, UISettings.CELL_SIZE,
                 startAngle + animationCounter * 6, 360 - animationCounter * 12, ArcType.ROUND);
+
+
+//        canvas.fillArc(object.getX() * UISettings.CELL_SIZE, object.getY() * UISettings.CELL_SIZE,
+//                UISettings.CELL_SIZE, UISettings.CELL_SIZE,
+//                startAngle + animationCounter * 6, 360 - animationCounter * 12, ArcType.ROUND);
+
     }
 }

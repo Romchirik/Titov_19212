@@ -1,5 +1,7 @@
 package nsu.titov;
 
+import nsu.titov.messages.Handshake;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
@@ -22,13 +24,11 @@ public class Server {
                     .setName("BitTorrent Protocol")
                     .setReserved(null);
 
-
-            out.write(myHandshakeInfo.getBody());
             if (in.read(arr) != Handshake.TOTAL_SIZE) {
                 System.out.println("foooooooooo!");
             }
-            Handshake response = Handshake.createHandshake(arr);
-            if (myHandshakeInfo.equals(response)) {
+
+            if (true) {
                 System.out.println("Accepted :)");
             } else {
                 System.out.println("Rejected :(");

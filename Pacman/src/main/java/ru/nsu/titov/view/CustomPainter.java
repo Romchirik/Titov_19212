@@ -4,6 +4,7 @@ package ru.nsu.titov.view;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import ru.nsu.titov.model.GameObject;
+import ru.nsu.titov.model.ghosts.Ghost;
 import ru.nsu.titov.model.playfield.Wall;
 
 public class CustomPainter {
@@ -20,16 +21,14 @@ public class CustomPainter {
     }
 
     public void paint(GameObject object, GraphicsContext canvas) {
+        //сделать Painter и наследовать кажды отрисовщик от него
         switch (object.getID()) {
             case PACMAN -> PacmanPainter.drawPacman(object, canvas);
             case WALL -> WallPainter.drawWall((Wall) object, canvas);
-            case FOOD -> canvas.drawImage(food, object.getX() * 16, object.getY() * 16);
-            case BLINKY -> MovingObjectsPainter.drawObject(object, canvas, blinky);
-            case PINKY -> MovingObjectsPainter.drawObject(object, canvas, pinky);
-            case INKY -> MovingObjectsPainter.drawObject(object, canvas, inky);
-            case CLYDE -> MovingObjectsPainter.drawObject(object, canvas, clyde);
+            case FOOD -> canvas.drawImage(food, object.getX() * UISettings.CELL_SIZE, object.getY() * UISettings.CELL_SIZE);
+            case BLINKY, INKY, PINKY, CLYDE -> GhostPainter.drawObject((Ghost) object, canvas);
+            case ENERGIZER -> EnergizerPainter.drawEnergizer(object, canvas);
         }
 
     }
-
 }

@@ -64,29 +64,7 @@ final public class GameField {
     }
 
     public boolean acceptMove(int x, int y, int nextX, int nextY, ObjectId id) {
-        if (playfield.get(translateCoordinates(nextX, nextY)).getID() == ObjectId.DOOR) {
-            if (id == ObjectId.PACMAN) {
-                return false;
-            }
-            int deltaX = nextX - x;
-            int deltaY = nextY - y;
-            Direction moveDir = Direction.UNDEFINED;
-
-            if (deltaX == -1) {
-                moveDir = Direction.LEFT;
-            } else {
-                moveDir = Direction.RIGHT;
-            }
-
-            if (deltaY == -1) {
-                moveDir = Direction.UP;
-            } else {
-                moveDir = Direction.DOWN;
-            }
-            return moveDir == playfield.get(translateCoordinates(nextX, nextY)).getDirection();
-        } else {
-            return playfield.get(translateCoordinates(nextX, nextY)).getID() != ObjectId.WALL;
-        }
+        return playfield.get(translateCoordinates(nextX, nextY)).getID() != ObjectId.WALL;
     }
 
     public boolean ifIntersection(int x, int y) {
@@ -104,7 +82,6 @@ final public class GameField {
         if (getObjectAt(x + 1, y).getID() != ObjectId.WALL) tmp.add(Direction.RIGHT);
         if (getObjectAt(x, y + 1).getID() != ObjectId.WALL) tmp.add(Direction.DOWN);
         if (getObjectAt(x, y - 1).getID() != ObjectId.WALL) tmp.add(Direction.UP);
-
 
         return tmp;
     }

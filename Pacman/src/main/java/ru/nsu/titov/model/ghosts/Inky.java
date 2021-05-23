@@ -21,13 +21,14 @@ public class Inky extends Ghost {
         this.direction = Direction.LEFT;
         scatterX = 30;
         scatterY = 33;
+        this.startVelocity = velocity;
     }
 
 
     @Override
     void updateChaseTactic(Model model) {
         int blinkyX = model.getBlinkyPosition().getX();
-        int blinkyY = model.getBlinkyPosition().getX();
+        int blinkyY = model.getBlinkyPosition().getY();
 
         int pacX = model.getPacmanPosition().getX();
         int pacY = model.getPacmanPosition().getY();
@@ -45,8 +46,8 @@ public class Inky extends Ghost {
             }
         }
 
-        shiftX = blinkyX - pacX;
-        shiftY = blinkyY - pacY;
+        shiftX = pacX - blinkyX;
+        shiftY = pacY - blinkyY;
 
         this.direction = getPreferredDirection(pacX + shiftX, pacY + shiftY, model.getGameField());
     }

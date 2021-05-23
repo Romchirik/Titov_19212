@@ -22,6 +22,7 @@ public class Clyde extends Ghost {
         this.direction = Direction.LEFT;
         scatterX = 0;
         scatterY = 33;
+        this.startVelocity = velocity;
     }
 
     @Override

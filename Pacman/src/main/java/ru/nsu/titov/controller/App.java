@@ -2,8 +2,8 @@ package ru.nsu.titov.controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import ru.nsu.titov.view.UISettings;
 
@@ -12,12 +12,17 @@ public final class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent a = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/start_screen.fxml"));
+        Window.getInstance().window = stage;
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/start_screen.fxml"));
         stage.setTitle("Pacman");
-        Scene b = new Scene(a, UISettings.MAIN_WINDOW_WIDTH, UISettings.MAIN_WINDOW_HEIGHT);
+        AnchorPane view = loader.load();
+        StartScreenController controller = (StartScreenController) loader.getController();
+        controller.init();
+        Scene tmp = new Scene(view, UISettings.MAIN_WINDOW_WIDTH, UISettings.MAIN_WINDOW_HEIGHT);
 
-        stage.setScene(b);
+        stage.setScene(tmp);
         stage.show();
     }
+
 
 }

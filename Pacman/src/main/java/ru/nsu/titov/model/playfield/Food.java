@@ -6,7 +6,7 @@ import ru.nsu.titov.model.ObjectId;
 
 public class Food extends GameObject {
     private boolean eaten = false;
-    final private int SCORE_COST = 10;
+    final private int COST = 10;
 
     public Food(int logicalX, int logicalY) {
         super(logicalX, logicalY);
@@ -27,8 +27,9 @@ public class Food extends GameObject {
     public void onCollide(GameObject object, Model model) {
         if(object.getID() == ObjectId.PACMAN){
             this.eaten = true;
+            model.increaseScore(COST);
         }
-        model.increaseScore(SCORE_COST);
+
     }
 
 

@@ -9,40 +9,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="480.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.titov.controller.StartScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="448.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.titov.controller.StartScreenController">
    <children>
-      <ImageView fitHeight="149.0" fitWidth="430.0" layoutX="25.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="149.0" fitWidth="430.0" layoutX="9.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../textures/logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="startButton" layoutX="155.0" layoutY="230.0" mnemonicParsing="false" onAction="#startGame" prefHeight="59.0" prefWidth="177.0" style="-fx-background-color: transparent;" text="start" textAlignment="CENTER" textFill="#d0d0d0">
+      <Button fx:id="startButton" layoutX="136.0" layoutY="229.0" mnemonicParsing="false" onAction="#startGame" prefHeight="59.0" prefWidth="177.0" style="-fx-background-color: transparent;" text="start" textAlignment="CENTER" textFill="#d0d0d0">
          <font>
             <Font size="31.0" />
          </font>
       </Button>
-      <Button fx:id="leaderboardButton" layoutX="111.0" layoutY="279.0" mnemonicParsing="false" onAction="#showLeaderboard" prefHeight="59.0" prefWidth="283.0" style="-fx-background-color: transparent;" text="leaderboard" textAlignment="CENTER" textFill="#d0d0d0">
+      <Button fx:id="leaderboardButton" layoutX="89.0" layoutY="282.0" mnemonicParsing="false" onAction="#showLeaderboard" prefHeight="59.0" prefWidth="283.0" style="-fx-background-color: transparent;" text="leaderboard" textAlignment="CENTER" textFill="#d0d0d0">
          <font>
             <Font size="31.0" />
          </font>
       </Button>
-      <TextField fx:id="playerNameSelector" alignment="CENTER" layoutX="259.0" layoutY="341.0" prefHeight="33.0" prefWidth="205.0">
+      <TextField fx:id="playerNameSelector" alignment="CENTER" layoutX="231.0" layoutY="341.0" prefHeight="33.0" prefWidth="205.0">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Label layoutX="39.0" layoutY="338.0" prefHeight="39.0" prefWidth="205.0" text="select player" textFill="#d0d0d0">
+      <Label layoutX="14.0" layoutY="338.0" prefHeight="39.0" prefWidth="205.0" text="select player" textFill="#d0d0d0">
          <font>
             <Font size="31.0" />
          </font>
       </Label>
-      <Label layoutX="39.0" layoutY="397.0" prefHeight="39.0" prefWidth="177.0" text="select level" textFill="#d0d0d0">
+      <Label layoutX="15.0" layoutY="397.0" prefHeight="39.0" prefWidth="177.0" text="select level" textFill="#d0d0d0">
          <font>
             <Font size="31.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="levelSelector" layoutX="259.0" layoutY="400.0" prefHeight="33.0" prefWidth="205.0" />
-      <Button fx:id="exitButton" layoutX="111.0" layoutY="436.0" mnemonicParsing="false" onAction="#exit" prefHeight="59.0" prefWidth="283.0" style="-fx-background-color: transparent;" text="exit" textAlignment="CENTER" textFill="#d0d0d0">
+      <ChoiceBox fx:id="levelSelector" layoutX="231.0" layoutY="400.0" prefHeight="33.0" prefWidth="205.0" />
+      <Button fx:id="exitButton" layoutX="90.0" layoutY="433.0" mnemonicParsing="false" onAction="#exit" prefHeight="59.0" prefWidth="283.0" style="-fx-background-color: transparent;" text="exit" textAlignment="CENTER" textFill="#d0d0d0">
          <font>
             <Font size="31.0" />
          </font>

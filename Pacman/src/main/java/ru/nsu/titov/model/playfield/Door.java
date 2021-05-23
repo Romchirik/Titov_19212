@@ -24,6 +24,8 @@ public class Door extends GameObject {
 
     @Override
     public void onCollide(GameObject object, Model model) {
-
+        if(!object.isDoorsPassing()){
+            object.setDirection(this.direction);
+        }
     }
 }

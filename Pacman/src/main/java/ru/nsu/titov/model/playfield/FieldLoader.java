@@ -1,6 +1,7 @@
 package ru.nsu.titov.model.playfield;
 
 import ru.nsu.titov.controller.Settings;
+import ru.nsu.titov.model.Direction;
 import ru.nsu.titov.model.GameObject;
 import ru.nsu.titov.model.ObjectId;
 
@@ -14,7 +15,7 @@ public class FieldLoader {
         try (InputStream lines = FieldLoader.class.getResourceAsStream(String.format("/maps/%s.pcm", mapName))) {
 
             int currentLine = 0;
-            int currentRow = 0;
+            int currentColumn = 0;
 
             Scanner scanner = new Scanner(lines);
             while (scanner.hasNextLine()) {
@@ -25,35 +26,39 @@ public class FieldLoader {
                         case '.' -> tmpMap.playfield.add(new Food(0, 0));
                         case '*' -> tmpMap.playfield.add(new Energizer(0, 0));
                         case 'p' -> {
-                            tmpMap.pinkyStartX = currentLine;
-                            tmpMap.pinkyStartY = currentRow;
+                            tmpMap.pinkyStartX = currentColumn;
+                            tmpMap.pinkyStartY = currentLine;
                             tmpMap.playfield.add(new Void(0, 0));
                         }
                         case 'i' -> {
-                            tmpMap.inkyStartX = currentLine;
-                            tmpMap.inkyStartY = currentRow;
+                            tmpMap.inkyStartX = currentColumn;
+                            tmpMap.inkyStartY = currentLine;
                             tmpMap.playfield.add(new Void(0, 0));
                         }
                         case 'c' -> {
-                            tmpMap.clydeStartX = currentLine;
-                            tmpMap.clydeStartY = currentRow;
+                            tmpMap.clydeStartX = currentColumn;
+                            tmpMap.clydeStartY = currentLine;
                             tmpMap.playfield.add(new Void(0, 0));
                         }
                         case 'b' -> {
-                            tmpMap.blinkyStartX = currentLine;
-                            tmpMap.blinkyStartY = currentRow;
+                            tmpMap.blinkyStartX = currentColumn;
+                            tmpMap.blinkyStartY = currentLine;
                             tmpMap.playfield.add(new Void(0, 0));
                         }
                         case 'P' -> {
-                            tmpMap.pacmanStartX = currentLine;
-                            tmpMap.pacmanStartY = currentRow;
+                            tmpMap.pacmanStartX = currentColumn;
+                            tmpMap.pacmanStartY = currentLine;
                             tmpMap.playfield.add(new Void(0, 0));
                         }
+                        case '<' -> tmpMap.playfield.add(new Door(0, 0, Direction.LEFT));
+                        case 'v' -> tmpMap.playfield.add(new Door(0, 0, Direction.DOWN));
+                        case '^' -> tmpMap.playfield.add(new Door(0, 0, Direction.UP));
+                        case '>' -> tmpMap.playfield.add(new Door(0, 0, Direction.RIGHT));
                         default -> tmpMap.playfield.add(new Void(0, 0));
                     }
-                    currentRow++;
+                    currentColumn++;
                 }
-                currentRow = 0;
+                currentColumn = 0;
                 currentLine++;
             }
         }

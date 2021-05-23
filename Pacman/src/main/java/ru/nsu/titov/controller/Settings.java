@@ -2,11 +2,11 @@ package ru.nsu.titov.controller;
 
 //TODO добавить подгружатель настроек
 public class Settings {
+    public static final String LEADERBOARD_FILE = "leaderboard.properties";
+    public static final int MAP_LOGICAL_WIDTH = 28;
+    public static final int MAP_LOGICAL_HEIGHT = 32;
 
-    public static int MAP_LOGICAL_WIDTH = 30;
-    public static int MAP_LOGICAL_HEIGHT = 33;
-
-    public static String MAP_LOCATION = "src/main/resources/maps/";
-
-    public static int FPS = 1;
+    public static String MAP_LOCATION = "/maps/";
+    public static final int FPS = 60;
+    public static final int GHOSTS_FLIP_TIME = 7;
 }

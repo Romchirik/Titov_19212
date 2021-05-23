@@ -10,6 +10,7 @@ abstract public class GameObject {
     protected int ticksPassed = 0;
     protected int velocity;
 
+    protected boolean doorsPassing = false;
     protected boolean stopFlag = false;
     protected final int uniqueId = UniqueId.getId();
     protected ObjectId ID = DEFAULT;
@@ -18,6 +19,14 @@ abstract public class GameObject {
     public GameObject(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public boolean isDoorsPassing() {
+        return doorsPassing;
+    }
+
+    public void setDoorsPassing(boolean doorsPassing) {
+        this.doorsPassing = doorsPassing;
     }
 
     public static boolean checkCollision(GameObject obj1, GameObject obj2) {

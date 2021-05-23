@@ -22,6 +22,7 @@ public class Pinky extends Ghost {
         this.direction = Direction.RIGHT;
         scatterX = 0;
         scatterY = 0;
+        this.startVelocity = velocity;
     }
 
     @Override

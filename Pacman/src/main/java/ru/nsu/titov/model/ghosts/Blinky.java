@@ -21,6 +21,7 @@ public class Blinky extends Ghost {
         super(logicalX, logicalY);
         ID = ObjectId.BLINKY;
         this.velocity = velocity;
+        this.startVelocity = velocity;
         this.direction = Direction.RIGHT;
         scatterX = 30;
         scatterY = 0;

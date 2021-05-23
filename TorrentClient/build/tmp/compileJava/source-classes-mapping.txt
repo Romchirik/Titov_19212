@@ -1,10 +1,42 @@
-nsu/titov/Handshake.java
- nsu.titov.Handshake
-nsu/titov/Server.java
- nsu.titov.Server
+nsu/titov/client/PeerState.java
+ nsu.titov.client.PeerState
+nsu/titov/message/MessageId.java
+ nsu.titov.message.MessageId
+nsu/titov/client/Client.java
+ nsu.titov.client.Client
 nsu/titov/NetworkHandler.java
  nsu.titov.NetworkHandler
+nsu/titov/Helper.java
+ nsu.titov.Helper
+nsu/titov/message/Handshake.java
+ nsu.titov.message.Handshake
+nsu/titov/Server.java
+ nsu.titov.Server
 nsu/titov/FilesystemHandler.java
  nsu.titov.FilesystemHandler
 nsu/titov/Client.java
  nsu.titov.Client
+nsu/titov/config/PeerConfiguration.java
+ nsu.titov.config.PeerConfiguration
+nsu/titov/message/Message.java
+ nsu.titov.message.Message
+nsu/titov/message/InterestedMessage.java
+ nsu.titov.message.InterestedMessage
+nsu/titov/message/ChokeMessage.java
+ nsu.titov.message.ChokeMessage
+nsu/titov/message/MessageFactory.java
+ nsu.titov.message.MessageFactory
+nsu/titov/message/HaveMessage.java
+ nsu.titov.message.HaveMessage
+nsu/titov/message/PieceMessage.java
+ nsu.titov.message.PieceMessage
+nsu/titov/message/UnchokeMessage.java
+ nsu.titov.message.UnchokeMessage
+nsu/titov/message/RequestMessage.java
+ nsu.titov.message.RequestMessage
+nsu/titov/message/BitfieldMessage.java
+ nsu.titov.message.BitfieldMessage
+nsu/titov/message/UninterestedMessage.java
+ nsu.titov.message.UninterestedMessage
+nsu/titov/message/CancelMessage.java
+ nsu.titov.message.CancelMessage

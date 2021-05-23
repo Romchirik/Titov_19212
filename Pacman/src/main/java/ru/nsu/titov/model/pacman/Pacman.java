@@ -71,4 +71,7 @@ public class Pacman extends GameObject {
     public void setLives(int lives) {
         this.lives = lives;
     }
+    public void reset(){
+        ticksPassed = 0;
+    }
 }
