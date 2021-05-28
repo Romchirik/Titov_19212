@@ -15,7 +15,7 @@ public class NIOServer {
     @SuppressWarnings("unused")
     public static void main(String[] args) throws IOException {
 
-        // Selector: multiplexor of SelectableChannel objects
+        // Selector: multiplexer of SelectableChannel objects
         Selector selector = Selector.open(); // selector is open here
 
         // ServerSocketChannel: selectable channel for stream-oriented listening sockets
@@ -29,7 +29,11 @@ public class NIOServer {
         socket.configureBlocking(false);
 
         int ops = socket.validOps();
-        SelectionKey selectKy = socket.register(selector, ops, null);
+
+
+        //подсказка от жака фреско, для серверного сокета передать только accept а для принимаюжего read || write
+        SelectionKey selectKy = socket.register(selector, ops, SelectionKey.OP_ACCEPT);
+
 
         // Infinite loop..
         // Keep server running
@@ -41,6 +45,8 @@ public class NIOServer {
 
             // token representing the registration of a SelectableChannel with a Selector
             Set<SelectionKey> keys = selector.selectedKeys();
+            SocketChannel a;
+            //a.register();
             Iterator<SelectionKey> iter = keys.iterator();
 
             while (iter.hasNext()) {
@@ -55,12 +61,14 @@ public class NIOServer {
 
                     // Operation-set bit for read operations
                     client.register(selector, SelectionKey.OP_READ);
+
                     log("Connection Accepted: " + client.getLocalAddress() + "\n");
 
                     // Tests whether this key's channel is ready for reading
                 } else if (myKey.isReadable()) {
 
                     SocketChannel crunchifyClient = (SocketChannel) myKey.channel();
+
                     ByteBuffer crunchifyBuffer = ByteBuffer.allocate(256);
                     crunchifyClient.read(crunchifyBuffer);
                     String result = new String(crunchifyBuffer.array()).trim();

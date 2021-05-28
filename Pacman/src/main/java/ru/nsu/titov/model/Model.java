@@ -12,6 +12,7 @@ import ru.nsu.titov.model.playfield.Void;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static ru.nsu.titov.model.GameObject.checkCollision;
 
@@ -78,16 +79,6 @@ public final class Model {
      * 6) check finish
      */
     public boolean tick() {
-
-        if (pacNextDir != Direction.UNDEFINED && pacman.getTicksPassed() == 0) {
-            Direction backup = pacman.getDirection();
-            pacman.setDirection(pacNextDir);
-            if (!gameField.acceptMove(pacman.getX(), pacman.getY(), pacman.getNextX(), pacman.getNextY(), ObjectId.PACMAN)) {
-                pacman.setDirection(backup);
-            }
-            pacNextDir = Direction.UNDEFINED;
-        }
-
         if (gameField.acceptMove(pacman.getX(), pacman.getY(), pacman.getNextX(), pacman.getNextY(), ObjectId.PACMAN)) {
             pacman.tick(this);
         }
@@ -121,12 +112,25 @@ public final class Model {
         }
         ghosts.forEach(ghost -> gameField.normalizeCoords(ghost));
         gameField.normalizeCoords(pacman);
+
+        if (pacNextDir != Direction.UNDEFINED && pacman.ticksPassed == 0) {
+            List<Direction> availableDirs = gameField.getAvailableDirs(pacman.getX(), pacman.getY(), ObjectId.PACMAN);
+
+            availableDirs.forEach(direction -> {
+                if (direction == pacNextDir) {
+                    pacman.setDirection(direction);
+                    pacNextDir = Direction.UNDEFINED;
+                }
+            });
+
+        }
+
         return (gameField.getFoodsLeft() != 0 && pacman.getLives() >= 0);
     }
 
 
     public void setPacmanDirection(Direction direction) {
-        if (Direction.getOppositeDir(direction) == pacman.getDirection()) {
+        if(pacman.getDirection() == Direction.getOppositeDir(direction)){
             pacman.setDirection(direction);
             return;
         }

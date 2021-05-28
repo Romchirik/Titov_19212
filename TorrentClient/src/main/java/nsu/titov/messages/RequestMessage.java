@@ -1,11 +1,17 @@
 package nsu.titov.messages;
 
+import nsu.titov.ByteIntConverter;
+
 public class RequestMessage extends Message {
     private final static int PAYLOAD_LENGTH = 12;
 
-    private final int pieceIndex;
-    private final int blockOffset;
-    private final int blockLength;
+    private int pieceIndex;
+    private int blockOffset;
+    private int blockLength;
+
+    public RequestMessage() {
+        id = MessageId.REQUEST;
+    }
 
     public RequestMessage(byte[] payload) {
         payloadSize = PAYLOAD_LENGTH;
@@ -28,5 +34,27 @@ public class RequestMessage extends Message {
 
     public int getBlockOffset() {
         return blockOffset;
+    }
+
+    public RequestMessage setPieceIndex(int pieceIndex) {
+        this.pieceIndex = pieceIndex;
+        return this;
+    }
+
+    public RequestMessage setBlockOffset(int blockOffset) {
+        this.blockOffset = blockOffset;
+        return this;
+    }
+
+    public RequestMessage setBlockLength(int blockLength) {
+        this.blockLength = blockLength;
+        return this;
+    }
+
+    @Override
+    void generateBytes(byte[] bytes) {
+        int[] raw = {pieceIndex, blockOffset, blockLength};
+        byte[] bytes1 = ByteIntConverter.intToByte(raw, 0);
+        System.arraycopy(bytes1, 0, bytes, 5, PAYLOAD_LENGTH);
     }
 }

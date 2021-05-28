@@ -51,7 +51,7 @@ public class Handshake {
         return tmp;
     }
 
-    public byte[] getBody() {
+    public byte[] getBytes() {
         return payload;
     }
 

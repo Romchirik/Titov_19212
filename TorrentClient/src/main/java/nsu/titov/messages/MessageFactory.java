@@ -14,10 +14,13 @@ public class MessageFactory {
     private static final Logger logger = Logger.getLogger(MessageFactory.class);
     Map<Byte, Class<?>> messages = new HashMap<>();
 
-    public MessageFactory() {
+
+    private static MessageFactory instance = null;
+
+    private MessageFactory() {
         Properties props = new Properties();
 
-        try (InputStream input = getClass().getResourceAsStream("factory.properties")) {
+        try (InputStream input = MessageFactory.class.getResourceAsStream("/factory.properties")) {
             props.load(input);
             props.forEach((key, value) -> {
                 try {
@@ -31,7 +34,7 @@ public class MessageFactory {
         }
     }
 
-    public Message createMessage(byte[] payload) {
+    private Message createMessagePrivate(byte[] payload) {
         try {
             return (Message) messages.get(payload[0]).getDeclaredConstructor(byte[].class).newInstance(payload);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
@@ -39,4 +42,32 @@ public class MessageFactory {
             return null;
         }
     }
+
+    private static void checkInstance() {
+        if (instance == null) {
+            instance = new MessageFactory();
+        }
+    }
+
+    public static Message createMessage(byte[] payload) {
+        if (instance == null) {
+            instance = new MessageFactory();
+        }
+        return instance.createMessagePrivate(payload);
+    }
+
+    public static Message createMessage(MessageId id) {
+        return switch (id) {
+            case CHOKE -> new ChokeMessage();
+            case UNCHOKE -> new UnchokeMessage();
+            case INTERESTED -> new InterestedMessage();
+            case UNINTERESTED -> new UninterestedMessage();
+            case HAVE -> new HaveMessage();
+            case BITFIELD -> new BitfieldMessage();
+            case REQUEST -> new RequestMessage();
+            case PIECE -> new PieceMessage();
+            case CANCEL -> new CancelMessage();
+        };
+    }
+
 }
