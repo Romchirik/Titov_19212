@@ -1,6 +1,6 @@
 package nsu.titov.messages;
 
-import nsu.titov.ByteIntConverter;
+import nsu.titov.converters.ByteIntConverter;
 
 public class RequestMessage extends Message {
     private final static int PAYLOAD_LENGTH = 12;

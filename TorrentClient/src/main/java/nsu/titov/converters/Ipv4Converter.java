@@ -1,4 +1,4 @@
-package nsu.titov.peer;
+package nsu.titov.converters;
 
 import picocli.CommandLine;
 

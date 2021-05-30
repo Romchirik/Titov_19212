@@ -1,6 +1,5 @@
 package nsu.titov.peer;
 
-import nsu.titov.Settings;
 import nsu.titov.messages.CancelMessage;
 import nsu.titov.messages.MessageFactory;
 import nsu.titov.messages.MessageId;

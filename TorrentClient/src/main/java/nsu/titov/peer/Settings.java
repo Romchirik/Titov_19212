@@ -1,4 +1,4 @@
-package nsu.titov;
+package nsu.titov.peer;
 
 public class Settings {
     public static int THREADPOOL_SIZE = 10;
@@ -8,4 +8,8 @@ public class Settings {
 
     public static int MAX_MESSAGE_SIZE = 2048;
 
+    void a(){
+        String abc;
+
+    }
 }

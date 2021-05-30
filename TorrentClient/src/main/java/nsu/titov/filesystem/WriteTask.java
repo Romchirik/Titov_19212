@@ -8,31 +8,38 @@ import java.io.RandomAccessFile;
 
 public class WriteTask implements Runnable {
 
-    private static final Logger logger = Logger.getLogger(WriteTask.class);
-    private int length;
-    private int offset;
-    private byte[] data;
-    private RandomAccessFile dest;
+    private final Logger logger = Logger.getLogger(getClass());
 
+    File destination;
+    private int fileOffset = 0;
+    private final byte[] src;
+    private int dataOffset = 0;
+    private int length = 0;
 
-    private WriteTask() {
+    private WriteTask(File destination, int fileOffset, byte[] src, int dataOffset, int length) {
+        this.destination = destination;
+        this.fileOffset = fileOffset;
+        this.src = src;
+        this.dataOffset = dataOffset;
+        this.length = length;
     }
 
-    public WriteTask(RandomAccessFile dest, byte[] data, int offset, int length) {
-        this.offset = offset;
-        this.length = length;
-        this.dest = dest;
-        this.data = new byte[length];
-        System.arraycopy(data, 0, this.data, 0, length);
+    public static WriteTask createTask(File destination, int fileOffset, byte[] src, int dataOffset, int length) {
+        if (destination == null || src == null) {
+            return null;
+        }
+        return new WriteTask(destination, fileOffset, src, dataOffset, length);
     }
 
     @Override
     public void run() {
-        try {
-            dest.write(data, offset, length);
+        try (RandomAccessFile output = new RandomAccessFile(destination, "rw")) {
+            output.seek(fileOffset);
+            output.write(src, dataOffset, length);
         } catch (IOException e) {
-            logger.error(String.format("Error occurred while writing in %s, offset %d, length %d", dest, offset, length));
-        }
-    }
+            System.out.println("hui");
 
+        }
+
+    }
 }

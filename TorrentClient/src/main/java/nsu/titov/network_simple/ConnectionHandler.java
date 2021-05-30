@@ -1,6 +1,6 @@
 package nsu.titov.network_simple;
 
-import nsu.titov.Settings;
+import nsu.titov.peer.Settings;
 import nsu.titov.messages.Info;
 import nsu.titov.messages.Message;
 import nsu.titov.messages.MessageFactory;

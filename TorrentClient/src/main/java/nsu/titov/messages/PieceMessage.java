@@ -1,6 +1,6 @@
 package nsu.titov.messages;
 
-import nsu.titov.ByteIntConverter;
+import nsu.titov.converters.ByteIntConverter;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-import nsu.titov.ByteIntConverter;
+import nsu.titov.converters.ByteIntConverter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

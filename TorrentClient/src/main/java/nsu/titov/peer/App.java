@@ -1,5 +1,6 @@
 package nsu.titov.peer;
 
+import nsu.titov.converters.Ipv4Converter;
 import picocli.CommandLine;
 
 import java.io.File;
@@ -45,8 +46,8 @@ public class App implements Callable<Integer> {
                 .setPeerId(id)
                 .setIp(ip)
                 .setPeers(otherPeers)
-                .setSaveDir(saveDir);
-
+                .setSaveDir(saveDir)
+                .setTorrent(torrentFile);
         peer.run();
 
         return 0;

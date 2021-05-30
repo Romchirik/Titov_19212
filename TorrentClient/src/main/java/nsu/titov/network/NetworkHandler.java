@@ -1,13 +1,11 @@
 package nsu.titov.network;
 
-import nsu.titov.Settings;
-import nsu.titov.messages.Message;
+import nsu.titov.peer.Settings;
 
 import java.net.InetAddress;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.util.IdentityHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class NetworkHandler {
