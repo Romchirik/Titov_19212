@@ -41,7 +41,8 @@ public class Server implements Runnable, MessageHandler {
         this.sharingFile = sharingFile;
         selector = Selector.open();
         server = ServerSocketChannel.open();
-        server.bind(new InetSocketAddress(Settings.DEFAULT_PORT));
+
+        server.bind(new InetSocketAddress(peerInfo.incomingPort));
         server.configureBlocking(false);
         server.register(selector, SelectionKey.OP_ACCEPT);
     }

@@ -19,6 +19,7 @@ public final class PeerStarter implements Runnable {
     private String peerId;
     private boolean seedingAllowed = false;
     private MetaData metadata;
+    private int port = Settings.DEFAULT_PORT;
 
     private PeerStarter() {
         ip = new InetSocketAddress(Settings.DEFAULT_PORT);
@@ -61,9 +62,9 @@ public final class PeerStarter implements Runnable {
         return this;
     }
 
-    public PeerStarter setIp(String ip) {
-        if (ip == null) return this;
-        this.ip = new InetSocketAddress(ip, Settings.DEFAULT_PORT);
+    public PeerStarter setPort(int port) {
+        if(port == 0) return this;
+        this.port = port;
         return this;
     }
 
@@ -74,7 +75,7 @@ public final class PeerStarter implements Runnable {
     private PeerInfo init() {
 
         if (ip == null) {
-            ip = new InetSocketAddress(Settings.DEFAULT_PORT);
+            ip = new InetSocketAddress(port);
         }
 
         if (saveDir == null) {
@@ -89,14 +90,6 @@ public final class PeerStarter implements Runnable {
             logger.warn("No .torrent file given");
             System.exit(0);
         }
-
-//        if (peersAddresses == null) {
-//            //FIXME add tracker handling
-//            logger.warn("I'm unable to download files from non-local peers");
-//            System.exit(0);
-//        }
-
-
 
         PeerInfo peerInfoTmp = new PeerInfo();
         peerInfoTmp.availablePeers = peersAddresses;
@@ -113,10 +106,12 @@ public final class PeerStarter implements Runnable {
     public void run() {
         PeerInfo peerInfo = init();
         peerInfo.metaData = metadata;
+        peerInfo.incomingPort = port;
         Peer peer;
 
         try {
             peer = new Peer(peerInfo);
+            logger.info("Peer started");
             peer.run();
         } catch (IOException e) {
             logger.error("Unknown error while staring peer");

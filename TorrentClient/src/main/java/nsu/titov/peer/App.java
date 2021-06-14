@@ -23,9 +23,9 @@ public class App implements Callable<Integer> {
     boolean help;
 
     @CommandLine.Option(names = {"-b", "--bind"},
-            description = "bind to this port for incoming connections,\n" + "ports are selected automatically",
-            paramLabel = "ip")
-    String ip;
+            description = "bind to this port for incoming connections,\n" + "otherwise ports are selected automatically",
+            paramLabel = "port")
+    int port = 0;
 
     @CommandLine.Option(names = {"-i", "--id"},
             description = "Set the node identifier to id, a hex string\n" +
@@ -49,7 +49,7 @@ public class App implements Callable<Integer> {
     public Integer call() throws Exception {
         PeerStarter peerStarter = PeerStarter.createPeer()
                 .setPeerId(peer_id)
-                .setIp(ip)
+                .setPort(port)
                 .setPeers(otherPeers)
                 .setSaveDir(saveDir)
                 .setTorrent(torrentFile)

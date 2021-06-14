@@ -61,10 +61,6 @@ public class MessageReader {
             buffer.get(data, 0, expectedLength);
             message = MessageFactory.createMessage(data);
 
-
-
-
-
             expectedLength = -1;
         }
 

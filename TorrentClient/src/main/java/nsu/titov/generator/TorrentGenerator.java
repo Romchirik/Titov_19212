@@ -97,7 +97,7 @@ public class TorrentGenerator implements Callable<Integer> {
 
             while (end < target.length()) {
 
-                file.read(piece, start, end);
+                file.read(piece, 0, pieceSize);
                 System.arraycopy(md.digest(piece), 0, result, writeIndex, 20);
 
                 writeIndex += 20;

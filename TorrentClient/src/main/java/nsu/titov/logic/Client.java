@@ -24,7 +24,7 @@ import java.util.Set;
 
 public class Client implements Runnable, MessageHandler {
 
-    private final static long REQUEST_DELAY = 5000;
+    private final static long REQUEST_DELAY = 1000;
     long lastRequest = 0;
     private static final Logger logger = Logger.getLogger(Client.class);
     //private part
@@ -124,7 +124,7 @@ public class Client implements Runnable, MessageHandler {
             Set<SelectionKey> selected = null;
 
             try {
-                selector.select();
+                selector.select(REQUEST_DELAY);
                 selected = selector.selectedKeys();
             } catch (IOException e) {
                 break;
@@ -149,7 +149,8 @@ public class Client implements Runnable, MessageHandler {
                 }
             }
 
-            if(checkFinish()){
+            if (checkFinish()) {
+                running = false;
                 try {
                     filesystemManager.merge(new File("./saved/" + metaData.name));
                 } catch (IOException e) {
@@ -162,13 +163,19 @@ public class Client implements Runnable, MessageHandler {
     private void sendRequests() {
         logger.info("Resending requests");
 
-        for (int i = 0; i < piecesCount; i++) {
+        int piecesRequested = 0;
+        Set<SelectionKey> available = selector.keys();
+        int openedConnections = available.size();
+
+        for (int i = 0; i < piecesCount && piecesRequested < openedConnections; i++) {
+
             if (piecesStatus.get(i) == PieceStatus.PENDING) {
+
                 piecesStatus.set(i, PieceStatus.REQUESTED);
 
                 RequestMessage message = new RequestMessage().setBlockLength(Settings.MAX_MESSAGE_SIZE).setBlockOffset(0).setPieceIndex(i);
 
-                Set<SelectionKey> available = selector.keys();
+
                 int skip = i % available.size();
                 for (SelectionKey key : available) {
                     if (skip != 0) {
@@ -181,6 +188,7 @@ public class Client implements Runnable, MessageHandler {
                     try {
                         reader.sendMessage(message, channel);
                         logger.info("Requested piece " + i + " from " + reader.id);
+                        piecesRequested++;
                         break;
                     } catch (IOException e) {
                         logger.error("Connection with " + reader.id + "broken, closing connection");
@@ -195,6 +203,7 @@ public class Client implements Runnable, MessageHandler {
 
 
     private boolean checkFinish() {
+
         for (int i = 0; i < piecesCount; i++) {
             if (piecesStatus.get(i) != PieceStatus.VALIDATED) {
                 return false;

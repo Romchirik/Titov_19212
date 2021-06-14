@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.List;
 
 public class PeerInfo {
+    public int incomingPort = Settings.DEFAULT_PORT;
     public boolean seedingAllowed;
     public URL trackerUrl;
     public List<InetSocketAddress> availablePeers;
