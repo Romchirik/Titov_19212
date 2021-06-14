@@ -67,13 +67,14 @@ final public class GameField {
         return playfield.get(translateCoordinates(nextX, nextY)).getID() != ObjectId.WALL;
     }
 
-    public boolean ifIntersection(int x, int y) {
+    public int countAvailableDirs(int x, int y) {
         int i = 0;
+
         if (getObjectAt(x - 1, y).getID() != ObjectId.WALL) i++;
         if (getObjectAt(x + 1, y).getID() != ObjectId.WALL) i++;
         if (getObjectAt(x, y + 1).getID() != ObjectId.WALL) i++;
         if (getObjectAt(x, y - 1).getID() != ObjectId.WALL) i++;
-        return i > 2;
+        return i;
     }
 
     public List<Direction> getAvailableDirs(int x, int y, ObjectId id) {

@@ -5,6 +5,8 @@ import ru.nsu.titov.model.GameObject;
 import ru.nsu.titov.model.Model;
 import ru.nsu.titov.model.ObjectId;
 
+import java.util.List;
+
 public class Pacman extends GameObject {
 
 
@@ -36,6 +38,7 @@ public class Pacman extends GameObject {
             case DOWN, RIGHT -> ticksPassed++;
         }
 
+
         boolean tmp = false;
         if (ticksPassed <= -velocity || ticksPassed >= velocity) {
             tmp = true;
@@ -49,6 +52,16 @@ public class Pacman extends GameObject {
                 case LEFT -> x -= 1;
                 case RIGHT -> x += 1;
             }
+
+            if (nextDir != Direction.UNDEFINED) {
+                List<Direction> availableDirs = model.getGameField().getAvailableDirs(x, y, ID);
+                availableDirs.forEach(dir -> {
+                    if (nextDir == dir) {
+                        this.direction = dir;
+                    }
+                });
+
+            }
         }
     }
 
@@ -59,9 +72,13 @@ public class Pacman extends GameObject {
 
     @Override
     public void setDirection(Direction direction) {
-        if (this.direction != direction) {
-            this.direction = direction;
-        }
+//        if (this.direction == Direction.getOppositeDir(direction)) {
+//            this.direction = direction;
+//        }
+//        nextDir = direction;
+
+        this.direction = direction;
+
     }
 
     public int getLives() {
@@ -71,7 +88,10 @@ public class Pacman extends GameObject {
     public void setLives(int lives) {
         this.lives = lives;
     }
-    public void reset(){
+
+    public void reset() {
         ticksPassed = 0;
     }
+
+
 }

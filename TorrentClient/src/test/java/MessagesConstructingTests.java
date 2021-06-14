@@ -1,8 +1,9 @@
-import nsu.titov.messages.BitfieldMessage;
-import nsu.titov.messages.HaveMessage;
-import nsu.titov.messages.RequestMessage;
+import nsu.titov.messages.*;
+import nsu.titov.peer.Settings;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 public class MessagesConstructingTests {
 
@@ -41,14 +42,38 @@ public class MessagesConstructingTests {
 
     @Test
     public void testRequestMessage() {
+
         byte[] payload1 = {(byte) 0x00, (byte) 0x00, (byte) 0x11, (byte) 0xAD, (byte) 0xCB,
                 (byte) 0x7C, (byte) 0xFA, (byte) 0xD6, (byte) 0x04,
                 (byte) 0x07, (byte) 0x78, (byte) 0x6B, (byte) 0x85};
 
         RequestMessage message1 = new RequestMessage(payload1);
 
-        Assertions.assertEquals(message1.getPieceIndex(),1158603);
-        Assertions.assertEquals(message1.getBlockOffset(),2096813572);
-        Assertions.assertEquals(message1.getBlockLength(),125332357);
+        Assertions.assertEquals(message1.getPieceIndex(), 1158603);
+        Assertions.assertEquals(message1.getBlockOffset(), 2096813572);
+        Assertions.assertEquals(message1.getBlockLength(), 125332357);
+
+        RequestMessage message2 = new RequestMessage().setBlockLength(Settings.MAX_MESSAGE_SIZE).setBlockOffset(2).setPieceIndex(1);
+        byte[] payload2 = message2.getBytes();
+
+
     }
+
+    @Test
+    public void testCancelMessage() {
+
+        CancelMessage message1 = (CancelMessage) MessageFactory.createMessage(MessageId.CANCEL);
+        byte[] payload = message1.setPieceIndex(100).setBlockOffset(300).setBlockLength(1200).getBytes();
+
+        CancelMessage message2 = (CancelMessage) MessageFactory.createMessage(Arrays.copyOfRange(payload, 4, payload.length));
+
+        Assertions.assertEquals(message2.getPieceIndex(), 100);
+        Assertions.assertEquals(message2.getBlockLength(), 1200);
+        Assertions.assertEquals(message2.getBlockOffset(), 300);
+
+        payload = message1.getBytes();
+
+        Assertions.assertEquals(payload[3], 17);
+    }
+
 }
