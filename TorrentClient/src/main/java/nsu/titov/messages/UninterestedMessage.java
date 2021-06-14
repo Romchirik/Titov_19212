@@ -1,5 +1,10 @@
 package nsu.titov.messages;
 
+import nsu.titov.logic.MessageHandler;
+import nsu.titov.network.MessageReader;
+
+import java.nio.channels.SelectionKey;
+
 public class UninterestedMessage extends Message {
     public UninterestedMessage() {
         id = MessageId.UNINTERESTED;
@@ -11,5 +16,10 @@ public class UninterestedMessage extends Message {
 
     @Override
     void generateBytes(byte[] bytes) {
+    }
+
+    @Override
+    public void handle(MessageHandler handler, MessageReader reader, SelectionKey key) {
+
     }
 }

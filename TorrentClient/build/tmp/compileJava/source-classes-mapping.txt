@@ -1,76 +1,68 @@
-nsu/titov/messages/Message.java
- nsu.titov.messages.Message
-nsu/titov/messages/HaveMessage.java
- nsu.titov.messages.HaveMessage
-nsu/titov/network_simple/NetworkHandler.java
- nsu.titov.network_simple.NetworkHandler
-nsu/titov/network/ReceiveState.java
- nsu.titov.network.ReceiveState
-nsu/titov/messages/Info.java
- nsu.titov.messages.Info
+nsu/titov/metainfo/MetaData.java
+ nsu.titov.metainfo.MetaData
 nsu/titov/converters/Ipv4Converter.java
  nsu.titov.converters.Ipv4Converter
+nsu/titov/testing/NIOServer.java
+ nsu.titov.NIOServer
+nsu/titov/logic/FilesystemManager.java
+ nsu.titov.logic.FilesystemManager
+nsu/titov/peer/App.java
+ nsu.titov.peer.App
+nsu/titov/messages/Handshake.java
+ nsu.titov.messages.Handshake
+nsu/titov/logic/PieceStatus.java
+ nsu.titov.logic.PieceStatus
+nsu/titov/peer/Settings.java
+ nsu.titov.peer.Settings
+nsu/titov/testing/TorrentMetadata.java
+ nsu.titov.testing.TorrentMetadata
+nsu/titov/converters/ByteIntConverter.java
+ nsu.titov.converters.ByteIntConverter
+nsu/titov/generator/TorrentGenerator.java
+ nsu.titov.generator.TorrentGenerator
+nsu/titov/metainfo/MetaDataLoader.java
+ nsu.titov.metainfo.MetaDataLoader
+nsu/titov/peer/PeerStarter.java
+ nsu.titov.peer.PeerStarter
+nsu/titov/peer/PrintExceptionMessageHandler.java
+ nsu.titov.peer.PrintExceptionMessageHandler
+nsu/titov/messages/Info.java
+ nsu.titov.messages.Info
+nsu/titov/peer/PeerInfo.java
+ nsu.titov.peer.PeerInfo
+nsu/titov/peer/Peer.java
+ nsu.titov.peer.Peer
+nsu/titov/messages/MessageId.java
+ nsu.titov.messages.MessageId
+ nsu.titov.messages.MessageId$1
+nsu/titov/messages/CancelMessage.java
+ nsu.titov.messages.CancelMessage
+nsu/titov/logic/Server.java
+ nsu.titov.logic.Server
+nsu/titov/messages/RequestMessage.java
+ nsu.titov.messages.RequestMessage
 nsu/titov/messages/UnchokeMessage.java
  nsu.titov.messages.UnchokeMessage
 nsu/titov/messages/UninterestedMessage.java
  nsu.titov.messages.UninterestedMessage
 nsu/titov/messages/ChokeMessage.java
  nsu.titov.messages.ChokeMessage
-nsu/titov/messages/Handshake.java
- nsu.titov.messages.Handshake
+nsu/titov/network/MessageReader.java
+ nsu.titov.network.MessageReader
+nsu/titov/messages/InterestedMessage.java
+ nsu.titov.messages.InterestedMessage
+nsu/titov/messages/PieceMessage.java
+ nsu.titov.messages.PieceMessage
+nsu/titov/messages/BitfieldMessage.java
+ nsu.titov.messages.BitfieldMessage
 nsu/titov/messages/MessageFactory.java
  nsu.titov.messages.MessageFactory
  nsu.titov.messages.MessageFactory$1
-nsu/titov/testing/TorrentMetadata.java
- nsu.titov.testing.TorrentMetadata
-nsu/titov/converters/ByteIntConverter.java
- nsu.titov.converters.ByteIntConverter
-nsu/titov/network/Connection.java
- nsu.titov.network.Connection
-nsu/titov/network/ConnectionState.java
- nsu.titov.network.ConnectionState
-nsu/titov/network/ConnectionHandler.java
- nsu.titov.network.ConnectionHandler
-nsu/titov/peer/PrintExceptionMessageHandler.java
- nsu.titov.peer.PrintExceptionMessageHandler
-nsu/titov/messages/CancelMessage.java
- nsu.titov.messages.CancelMessage
-nsu/titov/messages/RequestMessage.java
- nsu.titov.messages.RequestMessage
-nsu/titov/messages/PieceMessage.java
- nsu.titov.messages.PieceMessage
-nsu/titov/messages/InterestedMessage.java
- nsu.titov.messages.InterestedMessage
-nsu/titov/messages/MessageId.java
- nsu.titov.messages.MessageId
- nsu.titov.messages.MessageId$1
-nsu/titov/testing/NIOServer.java
- nsu.titov.NIOServer
-nsu/titov/peer/App.java
- nsu.titov.peer.App
-nsu/titov/messages/BitfieldMessage.java
- nsu.titov.messages.BitfieldMessage
-nsu/titov/network/NetworkHandler.java
- nsu.titov.network.NetworkHandler
-nsu/titov/peer/ServerPeer.java
- nsu.titov.peer.ServerPeer
-nsu/titov/filesystem/Piece.java
- nsu.titov.filesystem.Piece
-nsu/titov/peer/Peer.java
- nsu.titov.peer.Peer
-nsu/titov/peer/Settings.java
- nsu.titov.peer.Settings
-nsu/titov/filesystem/FilesystemHandler.java
- nsu.titov.filesystem.FilesystemHandler
-nsu/titov/peer/ClientPeer.java
- nsu.titov.peer.ClientPeer
-nsu/titov/filesystem/PieceStatus.java
- nsu.titov.filesystem.PieceStatus
-nsu/titov/network_simple/ConnectionHandler.java
- nsu.titov.network_simple.ConnectionHandler
-nsu/titov/filesystem/WriteTask.java
- nsu.titov.filesystem.WriteTask
-nsu/titov/testing/WriteTaskTest.java
- nsu.titov.testing.WriteTaskTest
-nsu/titov/filesystem/MultiThreadFilesystemHandler.java
- nsu.titov.filesystem.MultiThreadFilesystemHandler
+nsu/titov/logic/Client.java
+ nsu.titov.logic.Client
+nsu/titov/logic/MessageHandler.java
+ nsu.titov.logic.MessageHandler
+nsu/titov/messages/HaveMessage.java
+ nsu.titov.messages.HaveMessage
+nsu/titov/messages/Message.java
+ nsu.titov.messages.Message

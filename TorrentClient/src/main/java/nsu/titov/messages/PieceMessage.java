@@ -1,8 +1,10 @@
 package nsu.titov.messages;
 
 import nsu.titov.converters.ByteIntConverter;
+import nsu.titov.logic.MessageHandler;
+import nsu.titov.network.MessageReader;
 
-import java.util.Arrays;
+import java.nio.channels.SelectionKey;
 
 public class PieceMessage extends Message {
 
@@ -29,6 +31,15 @@ public class PieceMessage extends Message {
         System.arraycopy(payload, 9, this.payload, 0, payload.length - 9);
     }
 
+    public PieceMessage setBlockOffset(int blockOffset) {
+        this.blockOffset = blockOffset;
+        return this;
+    }
+
+    public PieceMessage setPieceIndex(int pieceIndex) {
+        this.pieceIndex = pieceIndex;
+        return this;
+    }
 
     public int getPieceIndex() {
         return pieceIndex;
@@ -39,8 +50,9 @@ public class PieceMessage extends Message {
     }
 
     public byte[] getBlock() {
-        return Arrays.copyOfRange(payload, 9, payload.length);
+        return payload;
     }
+
 
     @Override
     void generateBytes(byte[] bytes) {
@@ -48,7 +60,20 @@ public class PieceMessage extends Message {
         byte[] bytes1 = ByteIntConverter.intToByte(raw, 0);
 
         System.arraycopy(bytes1, 0, bytes, 5, 8);
-        System.arraycopy(payload, 9, bytes, 5 + 8, payloadSize);
+        System.arraycopy(payload, 0, bytes, 13, payloadSize);
     }
 
+    @Override
+    public void handle(MessageHandler handler, MessageReader reader, SelectionKey key) {
+        handler.handle(this, reader, key);
+    }
+
+
+    public PieceMessage setBlock(byte[] piece) {
+        payloadSize = piece.length;
+        this.payload = piece;
+        finalDataSize = 13 + payloadSize;
+
+        return this;
+    }
 }

@@ -1,6 +1,10 @@
 package nsu.titov.messages;
 
 import nsu.titov.converters.ByteIntConverter;
+import nsu.titov.logic.MessageHandler;
+import nsu.titov.network.MessageReader;
+
+import java.nio.channels.SelectionKey;
 
 public class RequestMessage extends Message {
     private final static int PAYLOAD_LENGTH = 12;
@@ -10,6 +14,7 @@ public class RequestMessage extends Message {
     private int blockLength;
 
     public RequestMessage() {
+        finalDataSize = PAYLOAD_LENGTH + 5;
         id = MessageId.REQUEST;
     }
 
@@ -56,5 +61,10 @@ public class RequestMessage extends Message {
         int[] raw = {pieceIndex, blockOffset, blockLength};
         byte[] bytes1 = ByteIntConverter.intToByte(raw, 0);
         System.arraycopy(bytes1, 0, bytes, 5, PAYLOAD_LENGTH);
+    }
+
+    @Override
+    public void handle(MessageHandler handler, MessageReader reader, SelectionKey key) {
+        handler.handle(this, reader, key);
     }
 }

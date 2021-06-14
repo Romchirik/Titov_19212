@@ -1,6 +1,10 @@
 package nsu.titov.messages;
 
 import nsu.titov.converters.ByteIntConverter;
+import nsu.titov.logic.MessageHandler;
+import nsu.titov.network.MessageReader;
+
+import java.nio.channels.SelectionKey;
 
 public class HaveMessage extends Message {
     private final static int PAYLOAD_LENGTH = 4;
@@ -27,5 +31,10 @@ public class HaveMessage extends Message {
     void generateBytes(byte[] bytes) {
         byte[] index = ByteIntConverter.intToByte(pieceIndex);
         System.arraycopy(index, 0, bytes, 5, payloadSize);
+    }
+
+    @Override
+    public void handle(MessageHandler handler, MessageReader reader, SelectionKey key) {
+
     }
 }

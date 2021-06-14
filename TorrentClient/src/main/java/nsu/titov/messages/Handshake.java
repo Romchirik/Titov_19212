@@ -24,9 +24,9 @@ public class Handshake {
         System.arraycopy(DEFAULT_PROTOCOL_NAME.getBytes(StandardCharsets.UTF_8), 0, payload, PROTOCOL_NAME_OFFSET, PROTOCOL_NAME_SIZE);
     }
 
-    public Handshake setName(String name) {
+    public Handshake setProtocolName(String name) {
         byte length = (byte) (name.length() > PROTOCOL_NAME_SIZE ? PROTOCOL_NAME_SIZE : name.length());
-        System.arraycopy(name.getBytes(StandardCharsets.UTF_8), 0, payload, PROTOCOL_NAME_OFFSET, PROTOCOL_NAME_SIZE);
+        System.arraycopy(name.getBytes(StandardCharsets.UTF_8), 0, payload, PROTOCOL_NAME_OFFSET, length);
         return this;
     }
 
@@ -38,7 +38,7 @@ public class Handshake {
         return this;
     }
 
-    public static Handshake createHandshake() {
+    public synchronized static Handshake createHandshake() {
         return new Handshake();
     }
 

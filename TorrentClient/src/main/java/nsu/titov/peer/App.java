@@ -30,8 +30,8 @@ public class App implements Callable<Integer> {
     @CommandLine.Option(names = {"-i", "--id"},
             description = "Set the node identifier to id, a hex string\n" +
                     "(default: computed based on ip and port)",
-            paramLabel = "save_dir")
-    String id;
+            paramLabel = "peer_id")
+    String peer_id;
 
     @CommandLine.Option(names = {"-p", "--port"}, converter = Ipv4Converter.class,
             description = "Instead of contacting the tracker for a peer list,\n" +
@@ -40,15 +40,21 @@ public class App implements Callable<Integer> {
             paramLabel = "ip:port")
     List<InetSocketAddress> otherPeers;
 
+    @CommandLine.Option(names = {"--seed"},
+            description = "force peer to start seeding",
+            paramLabel = "peer_id")
+    boolean seedingAllowed = false;
+
     @Override
     public Integer call() throws Exception {
-        Peer peer = Peer.createPeer()
-                .setPeerId(id)
+        PeerStarter peerStarter = PeerStarter.createPeer()
+                .setPeerId(peer_id)
                 .setIp(ip)
                 .setPeers(otherPeers)
                 .setSaveDir(saveDir)
-                .setTorrent(torrentFile);
-        peer.run();
+                .setTorrent(torrentFile)
+                .allowSeedingForced(seedingAllowed);
+        peerStarter.run();
 
         return 0;
     }

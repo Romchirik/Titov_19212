@@ -1,6 +1,10 @@
 package nsu.titov.messages;
 
 import nsu.titov.converters.ByteIntConverter;
+import nsu.titov.logic.MessageHandler;
+import nsu.titov.network.MessageReader;
+
+import java.nio.channels.SelectionKey;
 
 /**
  * This class represents a message default message structure of BitTorrent protocol
@@ -35,10 +39,10 @@ abstract public class Message {
 
     public byte[] getBytes() {
         byte[] bytes = new byte[finalDataSize];
-        byte[] size = ByteIntConverter.intToByte(finalDataSize - Info.MESSAGE_LEN_SIZE);
+        byte[] size = ByteIntConverter.intToByte(finalDataSize);
 
-        bytes[1] = size[0];
-        bytes[0] = size[1];
+        bytes[0] = size[0];
+        bytes[1] = size[1];
         bytes[2] = size[2];
         bytes[3] = size[3];
 
@@ -49,4 +53,6 @@ abstract public class Message {
     }
 
     abstract void generateBytes(byte[] bytes);
+
+    abstract public void handle(MessageHandler handler, MessageReader reader, SelectionKey key);
 }

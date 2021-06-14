@@ -1,6 +1,10 @@
 package nsu.titov.messages;
 
 import nsu.titov.converters.ByteIntConverter;
+import nsu.titov.logic.MessageHandler;
+import nsu.titov.network.MessageReader;
+
+import java.nio.channels.SelectionKey;
 
 public class CancelMessage extends Message {
     private final static int PAYLOAD_LENGTH = 12;
@@ -59,5 +63,10 @@ public class CancelMessage extends Message {
         byte[] bytes1 = ByteIntConverter.intToByte(raw, 0);
         payload = bytes1;
         System.arraycopy(payload, 0, bytes, 5, PAYLOAD_LENGTH);
+    }
+
+    @Override
+    public void handle(MessageHandler handler, MessageReader reader, SelectionKey key) {
+
     }
 }
